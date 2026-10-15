@@ -1,0 +1,33 @@
+<div id="tabSM" hidden>
+<div class="bar" role="toolbar" aria-label="Filter summary"><span class="lbl">Cakupan grafik bulanan</span><div class="seg" id="smSc"></div><span class="lbl" id="smPer"></span></div>
+<section><div class="eyebrow" id="smEy">Ringkasan Region Sumatera</div><div class="kpis" id="smK"></div></section>
+
+<section><h2>Pencapaian produksi terhadap BBC dan Target</h2>
+<p class="note">Produksi = ton TBS aktual (ESTATE_COST). BBC = forecast sensus (Snowflake YTD_TON_BBC Jan–Jun, file SAP Jul–Sep). Target = budget produksi per blok dari file perencanaan 2026, didistribusi per bulan sesuai kolom DISTRIBUSI. Ach = produksi ÷ BBC atau ÷ Target; titik hijau ≥ 100%.</p>
+<div class="tw"><table id="smT1"></table></div>
+<div class="grid2">
+<div><h3 class="sh" style="margin-top:6px">Ach. YTD per estate</h3><div class="chartbox" id="smC1"></div><div class="leg"><span><i class="sw" style="background:var(--s1)"></i>Ach. BBC</span><span><i class="sw" style="background:var(--s2)"></i>Ach. Target</span><span><i class="sw" style="background:none;border-top:2px dashed var(--ink2);height:0;width:16px;vertical-align:3px"></i>100%</span></div></div>
+<div><h3 class="sh" style="margin-top:6px" id="smH2">Ach. per bulan</h3><div class="chartbox" id="smC2"></div><div class="leg"><span><i class="sw" style="background:var(--s1)"></i>Ach. BBC</span><span><i class="sw" style="background:var(--s2)"></i>Ach. Target</span><span><i class="sw" style="background:none;border-top:2px dashed var(--ink2);height:0;width:16px;vertical-align:3px"></i>100%</span></div></div>
+</div>
+<h3 class="sh" style="margin-top:6px" id="smH3">Produksi, BBC dan Target per bulan (ton)</h3>
+<div class="chartbox" id="smC3"></div>
+<div class="leg"><span><i class="sw" style="background:var(--s1)"></i>Produksi</span><span><i class="sw" style="background:var(--s2);height:3px;vertical-align:3px"></i>BBC</span><span><i class="sw" style="background:var(--ink2);height:3px;vertical-align:3px"></i>Target</span></div>
+<div class="tw"><table id="smT2"></table></div></section>
+
+<section><h2>Pencapaian cost (Rp/Kg)</h2>
+<p class="note">EC Rp/Kg = total biaya ÷ ton produksi (tujuh komponen: Rawat, Infra, Pupuk, Panen, Transport, Umum, Penyusutan). Budget Rp/Kg = budget biaya ÷ Target produksi. Ach cost = aktual ÷ budget; <b>di bawah 100% berarti lebih hemat</b> (titik hijau). Sumber: PRS_COST.ESTATE_COST; PMY = afd A + C.</p>
+<div class="tw"><table id="smT3"></table></div>
+<div class="grid2">
+<div><h3 class="sh" style="margin-top:6px">EC Rp/Kg YTD: aktual vs budget</h3><div class="chartbox" id="smC4"></div><div class="leg"><span><i class="sw" style="background:var(--s1)"></i>Aktual</span><span><i class="sw" style="background:var(--ref)"></i>Budget</span></div></div>
+<div><h3 class="sh" style="margin-top:6px" id="smH5">EC Rp/Kg per bulan</h3><div class="chartbox" id="smC5"></div><div class="leg"><span><i class="sw" style="background:var(--s1);height:3px;vertical-align:3px"></i>Aktual</span><span><i class="sw" style="background:var(--ink2);height:3px;vertical-align:3px"></i>Budget</span></div></div>
+</div>
+</section>
+
+<section><h2>Breakdown cost per komponen (Rp/Kg, YTD)</h2>
+<div class="tw"><table id="smT4"></table></div>
+<h3 class="sh" style="margin-top:6px">Komposisi EC Rp/Kg: aktual (A) vs budget (B)</h3>
+<div class="chartbox" id="smC6"></div><div class="leg" id="smL6"></div>
+<h3 class="sh" id="smH7">Peta panas Rp/Kg per komponen per bulan</h3>
+<p class="note">Isi sel = Rp/Kg aktual. Warna: <span class="dot no"></span>merah = lebih mahal dari budget bulan itu, <span class="dot ok"></span>hijau = lebih hemat; makin pekat makin jauh (penuh pada selisih ±50%). Arahkan kursor ke sel untuk melihat budget.</p>
+<div class="tw"><table id="smT5"></table></div></section>
+</div>

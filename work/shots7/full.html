@@ -1,0 +1,334 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'></head><body><title>EC Region Sumatera</title>
+<style>
+:root{--bg:#f6f6f3;--surf:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mut:#7a7975;--line:#e1e0db;--grid:#ebeae6;--acc:#1c5cab;--head:#f0efec;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--ref:#a8a7a1;--good:#0ca30c;--bad:#d03b3b;--warn:#fab219}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0d0d;--surf:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mut:#96958d;--line:#383835;--grid:#2b2b29;--acc:#6da7ec;--head:#262624;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--ref:#6c6b66;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d0d0d;--surf:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mut:#96958d;--line:#383835;--grid:#2b2b29;--acc:#6da7ec;--head:#262624;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--ref:#6c6b66;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif;padding-inline:16px;padding-block:20px 48px}
+*{box-sizing:border-box}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1{font:600 26px/1.15 "IBM Plex Sans",system-ui,sans-serif;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:600 17px/1.25 "IBM Plex Sans",system-ui,sans-serif;margin:0;text-wrap:balance}
+.sub{color:var(--ink2);margin:4px 0 0;max-width:70ch}
+.eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;border-bottom:1px solid var(--line)}
+.seg{display:inline-flex;flex-wrap:wrap;max-width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surf)}
+.seg button{all:unset;cursor:pointer;padding:6px 12px;font-size:13px;color:var(--ink2);border-right:1px solid var(--line);white-space:nowrap}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed=true]{background:var(--acc);color:#fff;font-weight:600}
+.seg button:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+.lbl{font-size:12px;color:var(--mut)}
+section{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{border-left:3px solid var(--acc);padding:2px 0 2px 12px;min-width:0}
+.kpi .v{font:600 24px/1.2 "IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:12px;color:var(--mut)}
+.kpi .d{font-size:12px;color:var(--ink2)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--grid)}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--surf)}
+thead th{background:var(--head);font-weight:600;font-size:12px;color:var(--ink2);border-bottom:1px solid var(--line)}
+thead th:first-child{background:var(--head)}
+tr.tot td{font-weight:600;background:var(--head)}
+tr.tot td:first-child{background:var(--head)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:baseline}
+.ok{background:var(--good)}.no{background:var(--bad)}.na{background:var(--ref)}
+.note{font-size:12.5px;color:var(--ink2);max-width:90ch;margin:0}
+.warnbox{border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--ink2)}
+.warnbox b{color:var(--ink)}
+.chartbox{position:relative;min-width:0}
+svg{display:block;width:100%;height:auto}
+svg text{fill:var(--ink2);font:11px "IBM Plex Sans",system-ui,sans-serif}
+.tip{position:absolute;pointer-events:none;background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:6px 9px;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,.15);z-index:3;white-space:nowrap}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--ink2)}
+.sw{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+details summary{cursor:pointer;font-size:13px;color:var(--acc)}
+ul.m{margin:6px 0 0;padding-left:18px;color:var(--ink2);font-size:13px;display:flex;flex-direction:column;gap:4px}
+@media (max-width:520px){h1{font-size:22px}.kpi .v{font-size:20px}}
+th.g{text-align:center;border-left:1px solid var(--line)}
+td.bl,th.bl{border-left:1px solid var(--line)}
+h3.sh{font-size:15px;margin:22px 0 6px}
+td.hi{background:color-mix(in srgb,var(--bad) 20%,transparent);font-weight:600}
+td.es{font-weight:600}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<div class="wrap">
+<header>
+<div class="eyebrow">Region Sumatera · PT BBB (Jambi) · BA 2121 SEK, 2124 SBR, 2131 PMY</div>
+<h1>Laporan Estate Cost (EC) Januari – September 2026</h1>
+<p class="sub">Padanan laporan “EC Kaltim 3” untuk Sumatera: produksi, EC Rp/Kg dan Rp/Ha dalam empat sudut pandang, komponen biaya, pupuk, dan peringkat afdeling. MTD = September 2026, YTD = Januari – September 2026 (pilihan “YTD Jan–Agu” disimpan sebagai pembanding). BA 2132 Plasma Aksodano 1 dan 2133 Plasma Danobangko tidak diikutkan. Sumber: Snowflake, ditarik 2026-10-07.</p>
+<div class="warnbox" id="inc"><b>Biaya September belum lengkap.</b> Penyusutan September belum terposting di SEK, SBR, PMY (Rp 0), dan biaya umum (OVH) September di 2124, 2131 untuk beberapa afdeling nyaris nol. Akibatnya EC Rp/Kg MTD Sep dan YTD Jan–Sep terlihat terlalu hemat. Produksi dan HK lengkap sampai akhir bulan. Untuk perbandingan yang adil, pakai “YTD Jan–Agu (lengkap)” sampai biaya September ditutup.</div>
+</header>
+
+<div class="bar" role="toolbar" aria-label="Filter laporan">
+<span class="lbl">Cakupan</span><div class="seg" id="sScope"></div>
+<span class="lbl">Periode</span><div class="seg" id="sPer"></div>
+<span class="lbl">Sudut pandang EC</span><div class="seg" id="sView"></div>
+</div>
+
+<section><div class="eyebrow">Ringkasan</div><div class="kpis" id="kpis"></div></section>
+
+<section><h2>Produksi dan produktivitas</h2>
+<p class="note">Luas TM = tanaman menghasilkan (planted, status TM). Ha panen = HEKTAR_PANEN per blok (blok TM dan TBM yang sudah dipanen). Luas dan ha panen YTD adalah rata-rata bulanan pada periode. <b>Yield TM</b> = ton dari blok TM ÷ luas TM (TBM tidak ikut). <b>Yield ha panen</b> = seluruh produksi ÷ ha panen. Output = ton/HK, HA/HK = ha panen harian ÷ HK. Budget yield tidak ditampilkan karena budget luas tidak dipisah TM dan TBM.</p>
+<div class="tw"><table id="tProd"></table></div></section>
+
+<section><h2>Estate cost YTD per estate per afdeling</h2>
+<p class="note">Upkeep, infrastruktur dan pemupukan dalam Rp ribu per Ha TM (biaya hanya blok TM dibagi luas TM); panen dan transport dalam Rp/Kg (seluruh biaya dibagi seluruh produksi). ACT = aktual, TGT = budget, ACHV = ACT ÷ TGT. ACHV di atas 100% berarti biaya melampaui budget dan diberi warna merah. Budget per afdeling berasal dari file “BUDGET 2026 per AFD” (lihat catatan metodologi). Mengikuti pilihan periode di atas.</p>
+<div class="tw"><table id="tMat"></table></div></section>
+
+<section><h2>EC Rp/Kg dan Rp/Ha</h2>
+<p class="note" id="viewNote"></p>
+<div class="tw"><table id="tEC"></table></div>
+<div class="eyebrow">Empat sudut pandang EC untuk cakupan terpilih</div>
+<div class="tw"><table id="tViews"></table></div>
+<div class="grid2">
+<div><h2 style="margin-bottom:8px">EC Rp/Kg aktual vs budget</h2><div class="chartbox" id="cBar"></div>
+<div class="leg"><span><i class="sw" style="background:var(--s1)"></i>Aktual</span><span><i class="sw" style="background:var(--ref)"></i>Budget</span></div></div>
+<div><h2 style="margin-bottom:8px">Tren bulanan EC total Rp/Kg</h2><div class="chartbox" id="cLine"></div>
+<div class="leg"><span><i class="sw" style="background:var(--s1)"></i>SEK</span><span><i class="sw" style="background:var(--s2)"></i>SBR</span><span><i class="sw" style="background:var(--s3)"></i>PMY</span></div></div>
+</div>
+<details><summary>Tabel bulanan (EC total Rp/Kg, ton)</summary><div class="tw" style="margin-top:8px"><table id="tMon"></table></div></details>
+</section>
+
+<section><h2>Komponen biaya</h2>
+<p class="note">Biaya dalam Rp juta (seluruh biaya); Rp/Kg = seluruh biaya / seluruh ton; Rp/Ha = biaya TM / luas TM. Budget per komponen berasal dari file budget per afdeling milik pemilik laporan (lihat catatan metodologi).</p>
+<div class="tw"><table id="tComp"></table></div></section>
+
+<section><h2>Pemupukan blok TM: rekomendasi 1 tahun vs aktual Jan–Sep per afdeling (2026)</h2>
+<div style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-block:8px"><span class="lbl">Afdeling</span><div class="seg" id="sPupAfd"></div></div>
+<p class="note" id="pupNote"></p>
+<div class="tw"><table id="tPup"></table></div>
+<h3 class="sh">Dosis pupuk per Ha TM dan per pokok TM (aktual Jan–Sep vs rekomendasi 1 tahun 2026)</h3>
+<p class="note" id="dosNote"></p>
+<div class="tw"><table id="tDos"></table></div></section>
+
+
+<section><h2>Langsir TBS</h2>
+<p class="note">Biaya langsir TBS tercatat di COA “LANGSIR TBS” dan sudah termasuk dalam biaya transport pada EC. Analisis double handling (HK langsir dan KM) belum dibuat pada versi ini.</p>
+<div class="tw"><table id="tLang"></table></div></section>
+
+<section><h2>Peringkat afdeling (rank-sum)</h2>
+<p class="note">Bukan skor Kaltim 3. Tiap afdeling diurutkan pada empat indikator (pencapaian produksi vs budget, yield, output ton/HK, dan EC* = EC Rp/Kg tanpa pupuk, infra, penyusutan), lalu peringkatnya dijumlahkan; makin kecil makin baik. Hanya afdeling dengan luas ≥ 100 ha dan produksi &gt; 0.</p>
+<div class="tw"><table id="tRank"></table></div></section>
+
+<section><h2>Belum tersedia dan catatan data</h2>
+<div class="warnbox"><b>Belum tersedia di Snowflake:</b> VRA Rp/KM per unit, KM langsir, dan perbandingan RKB vs PDB. Bagian ini tidak diisi agar tidak ada angka karangan.</div>
+<ul class="m">
+<li><b>Pemayung (2131):</b> biaya dan budget BA dibukukan di kode lama BA 2122 dan digabung ke 2131. Pemetaan 2122→2131 sudah dikonfirmasi pemilik laporan.</li>
+<li><b>Budget per afdeling:</b> memakai file “BUDGET 2026 per AFD” (RKT 2026, Estate Cost per AFD; SEK, SBR dan PMY) yang diunggah pemilik laporan, bukan lagi hasil alokasi dari budget BA. Total file sama dengan budget BA di Snowflake untuk upkeep, infra (selisih ±Rp 20 juta/tahun di SEK), pupuk, panen, transport dan OVH. Satu-satunya kekurangan file adalah amortisasi tanaman menghasilkan di baris penyusutan (SEK ±Rp 11,3 M, SBR ±Rp 5,1 M, PMY ±Rp 0,6 M setahun). Selisih itu saya tambahkan dari budget BA Snowflake dan saya bagi ke afdeling menurut luas budget; itu satu-satunya bagian budget afdeling yang masih alokasi. Seluruh baris file berstatus TM, sehingga budget diperlakukan sebagai budget TM.</li><li><b>Perlu dikonfirmasi pemilik budget:</b> semua baris file budget berlabel GROUP01 = TM. Namun di SBR afd B, C dan E budget pupuk per Ha TM terlihat sangat tinggi (afd B ±Rp 13,9 juta/Ha TM dibanding ±Rp 6–12 juta di afdeling lain) karena luas TM budget kecil (±51–74 Ha) sementara blok TBM 3 juga dipupuk. Kemungkinan budget file mencakup blok TBM. Bila benar, ACHV Rp/Ha TM di afdeling itu (pupuk 3–12%) terlalu rendah dan tidak bisa dibandingkan langsung.</li>
+<li><b>PMY (2131):</b> biaya dan budget BA dibukukan di kode lama BA 2122 dan digabung ke 2131. PMY dibaca sebagai satu afdeling bernama “PMY” = afd A + afd C. File budget Pemayung hanya memuat afd A dan C, jadi seluruh budget BA 2131 kini melekat pada PMY (sebelumnya sebagian, ±Rp 3,6 M setahun, teralokasi ke afd B yang tidak punya budget di file). Afd B (±1.560 ton budget, ±182 ha, tanpa produksi) tetap dikeluarkan sesuai arahan pemilik laporan; biaya aktual afd B hanya ±Rp 4 juta.</li>
+<li><b>SBR:</b> luas afd B, C, D bergeser antar bulan (mis. C naik, D turun pada bulan terakhir), kemungkinan penataan ulang afdeling. Rp/Ha dan yield YTD per afdeling memakai rata-rata luas sehingga bisa bias.</li>
+<li><b>Budget OVH:</b> hanya SOURCE_BUDGET = ESTATE_COST yang dipakai; OPEX_BIAYA_UMUM sengaja tidak ditambahkan karena menggandakan Biaya Umum.</li>
+<li><b>Rekomendasi pupuk</b> = TARGET_KG pada tabel target pupuk. Substitusi jenis NPK (12-12-17 vs 13-6-27) terlihat sebagai selisih besar per jenis; baca subtotal NPK. Slow release tidak memiliki kg.</li>
+<li><b>BBC tidak ditampilkan:</b> kolom TON_BBC pada tabel pencapaian panen hanya ±22% dari produksi aktual (pencapaian 450%), sehingga definisi atau satuannya belum bisa saya pastikan. Daripada menampilkan angka yang menyesatkan, indikator BBC dan skor Kaltim 3 diganti pencapaian produksi vs budget.</li>
+<li><b>SBR afd B, C, E didominasi TBM:</b> luas TM-nya kecil (B ±60 ha, C ±100 ha, E 0) tetapi ha panen 120–410 ha karena blok TBM sudah dipanen. Karena itu Yield TM di sana dihitung dari ton blok TM saja dan angkanya kecil-basis; baca bersama yield ha panen.</li>
+<li><b>Rp/Ha berbasis TM:</b> pembagi Rp/Ha adalah luas TM (blok TBM tidak ikut). Biaya tidak punya kolom status tanaman, jadi porsi TM saya turunkan dari data blok: upkeep, infrastruktur, panen dan transport memakai porsi alokasi biaya per blok (biaya tenaga dan premi) pada blok TM; pemupukan memakai porsi nilai pupuk (kg × harga) yang diaplikasikan di blok TM. Biaya umum, sewa AMP, VRA dan penyusutan tidak bisa dipisah dan tetap penuh. Budget afdeling dari file budget (semua berstatus TM) dipakai penuh sebagai budget TM. Dampak terbesar di SBR: sekitar 30% pupuk dan 30% biaya panen blok tercatat di blok TBM 3. Rp/Kg tidak diubah.</li>
+<li><b>Afdeling tanpa luas atau produksi</b> (SEK-E, SBR-H/I/J) tidak ditampilkan karena seluruh nilainya nol.</li>
+</ul></section>
+</div>
+<script>
+// kolom R: ba,afd,periode(Y=Jan-Sep,M=Sep,A=Jan-Agu), ton,bbc,hapanen,hk,tonB,hkB,ha,haB, act[up,inf,fert,harv,trans,ovh,depr], bud[7] (Rp ribu)
+const R=[
+["2121", "A", "A", 8369.3, 2071.3, 17659.9, 6177.0, 9037.1, 8071.4, 569.5, 569.4, 981480.0, 742763.0, 4132294.0, 1736360.0, 563681.0, 5231583.0, 2374123.0, 995083.0, 754579.0, 3297349.0, 2031302.0, 706712.0, 5383841.0, 2878028.0],
+["2121", "A", "M", 1067.3, 226.2, 2445.6, 794.0, 1210.8, 1092.6, 569.5, 569.4, 70143.0, 70596.0, 169485.0, 207125.0, 63832.0, 652252.0, 0.0, 76661.0, 17676.0, 1493685.0, 275087.0, 94675.0, 678803.0, 419093.0],
+["2121", "A", "Y", 9436.5, 2297.5, 20105.4, 6971.0, 10247.9, 9163.9, 569.5, 569.4, 1051623.0, 813360.0, 4301780.0, 1943485.0, 627513.0, 5883835.0, 2374123.0, 1071744.0, 772255.0, 4791034.0, 2306389.0, 801387.0, 6062644.0, 3297121.0],
+["2121", "B", "A", 8161.4, 2049.9, 17395.4, 6706.0, 9361.0, 9304.8, 593.7, 593.6, 1187937.0, 408801.0, 3868259.0, 1820189.0, 466472.0, 5712317.0, 2753613.0, 936551.0, 914552.0, 3789696.0, 2188745.0, 537561.0, 5877740.0, 3067881.0],
+["2121", "B", "M", 1309.4, 240.4, 1789.2, 916.0, 1247.3, 1246.8, 593.7, 593.6, 183463.0, 30365.0, 203455.0, 260793.0, 61540.0, 712188.0, 0.0, 97698.0, 2122.0, 1610114.0, 293784.0, 71770.0, 741075.0, 448268.0],
+["2121", "B", "Y", 9470.7, 2290.3, 19184.6, 7622.0, 10608.3, 10551.6, 593.7, 593.6, 1371400.0, 439166.0, 4071713.0, 2080982.0, 528012.0, 6424505.0, 2753613.0, 1034249.0, 916673.0, 5399811.0, 2482529.0, 609331.0, 6618815.0, 3516149.0],
+["2121", "C", "A", 7414.6, 2081.6, 15488.3, 7516.0, 8319.2, 10131.5, 719.3, 725.1, 1748924.0, 317850.0, 3501832.0, 1985343.0, 680396.0, 6521897.0, 3197389.0, 1304631.0, 424664.0, 3477100.0, 2329582.0, 763157.0, 6712246.0, 3628381.0],
+["2121", "C", "M", 1797.7, 289.2, 1702.2, 1602.0, 1133.7, 1403.2, 719.3, 725.1, 243201.0, 29862.0, 383113.0, 420561.0, 125590.0, 813123.0, 0.0, 194185.0, 45100.0, 172342.0, 323322.0, 104266.0, 846291.0, 527528.0],
+["2121", "C", "Y", 9212.2, 2370.8, 17190.5, 9118.0, 9452.9, 11534.6, 719.3, 725.1, 1992125.0, 347712.0, 3884944.0, 2405903.0, 805987.0, 7335021.0, 3197389.0, 1498816.0, 469764.0, 3649442.0, 2652904.0, 867424.0, 7558537.0, 4155909.0],
+["2121", "D", "A", 9741.7, 2299.5, 17823.0, 7280.0, 10290.7, 9421.4, 655.5, 632.9, 1854638.0, 440082.0, 3011132.0, 1964297.0, 664128.0, 6819222.0, 3086280.0, 1224205.0, 331244.0, 4339718.0, 2330648.0, 784233.0, 6776349.0, 3400789.0],
+["2121", "D", "M", 1097.7, 209.0, 2184.8, 802.0, 1361.2, 1246.2, 655.5, 632.9, 279091.0, 31928.0, 155452.0, 200690.0, 65845.0, 850192.0, 0.0, 97730.0, 50284.0, 0.0, 308283.0, 103733.0, 854373.0, 499786.0],
+["2121", "D", "Y", 10839.3, 2508.5, 20007.9, 8082.0, 11651.9, 10667.6, 655.5, 632.9, 2133729.0, 472010.0, 3166584.0, 2164988.0, 729973.0, 7669415.0, 3086280.0, 1321936.0, 381528.0, 4339719.0, 2638931.0, 887967.0, 7630723.0, 3900576.0],
+["2121", "F", "A", 138.6, 38.7, 404.2, 121.0, 104.7, 64.7, 66.2, 25.2, 24840.0, 59858.0, 359130.0, 27145.0, 27410.0, 688903.0, 148669.0, 50061.0, 42229.0, 0.0, 18622.0, 13349.0, 270133.0, 135490.0],
+["2121", "F", "M", 30.3, 3.9, 47.1, 26.0, 13.8, 8.6, 66.2, 25.2, 6266.0, 0.0, 98214.0, 5153.0, 4152.0, 85890.0, 0.0, 4271.0, 2183.0, 0.0, 2463.0, 1766.0, 34059.0, 19914.0],
+["2121", "F", "Y", 168.9, 42.5, 451.3, 147.0, 118.6, 73.3, 66.2, 25.2, 31106.0, 59858.0, 457344.0, 32298.0, 31562.0, 774792.0, 148669.0, 54333.0, 44412.0, 0.0, 21086.0, 15115.0, 304192.0, 155404.0],
+["2121", "G", "A", 326.7, 45.5, 1382.8, 298.0, 416.9, 257.7, 71.1, 48.8, 77814.0, 3559.0, 568.0, 77160.0, 69641.0, 739463.0, 266271.0, 106809.0, 36678.0, 0.0, 75081.0, 63414.0, 521958.0, 262083.0],
+["2121", "G", "M", 53.6, 7.0, 231.4, 47.0, 55.2, 34.1, 71.1, 48.8, 7313.0, 0.0, 0.0, 10593.0, 9045.0, 92193.0, 0.0, 13900.0, 85.0, 0.0, 9931.0, 8388.0, 65809.0, 38513.0],
+["2121", "G", "Y", 380.3, 52.5, 1614.2, 345.0, 472.1, 291.8, 71.1, 48.8, 85127.0, 3559.0, 568.0, 87753.0, 78686.0, 831656.0, 266271.0, 120710.0, 36763.0, 0.0, 85012.0, 71802.0, 587767.0, 300596.0],
+["2121", "H", "A", 2108.5, 428.7, 6660.9, 1411.0, 2152.9, 1330.5, 272.1, 248.5, 315118.0, 32059.0, 1150018.0, 454500.0, 227868.0, 2830411.0, 635212.0, 402215.0, 136985.0, 0.0, 400824.0, 337750.0, 2660661.0, 1335280.0],
+["2121", "H", "M", 284.2, 47.0, 859.5, 197.0, 284.8, 176.0, 272.1, 248.5, 61770.0, 38413.0, 0.0, 63297.0, 33821.0, 352884.0, 0.0, 50072.0, 4121.0, 0.0, 53018.0, 44675.0, 335460.0, 196235.0],
+["2121", "H", "Y", 2392.7, 475.8, 7520.5, 1608.0, 2437.7, 1506.5, 272.1, 248.5, 376888.0, 70472.0, 1150018.0, 517797.0, 261688.0, 3183294.0, 635212.0, 452287.0, 141107.0, 0.0, 453842.0, 382425.0, 2996121.0, 1531515.0],
+["2124", "A", "A", 10979.8, 2059.3, 21397.3, 6909.0, 11563.7, 7006.2, 707.6, 708.1, 1104931.0, 549703.0, 4888723.0, 2024209.0, 792966.0, 5541473.0, 2174400.0, 975892.0, 558896.0, 5953350.0, 1917868.0, 773122.0, 5532462.0, 1760974.0],
+["2124", "A", "M", 1409.8, 265.2, 2982.9, 788.0, 1807.5, 1099.3, 707.6, 708.1, 130485.0, 78611.0, 218282.0, 241104.0, 102597.0, 750942.0, 0.0, 124699.0, 17004.0, 1981002.0, 300917.0, 120859.0, 628288.0, 225057.0],
+["2124", "A", "Y", 12389.6, 2324.6, 24380.2, 7697.0, 13371.2, 8105.4, 707.6, 708.1, 1235415.0, 628314.0, 5107005.0, 2265313.0, 895562.0, 6292416.0, 2174400.0, 1100591.0, 575900.0, 7934352.0, 2218786.0, 893982.0, 6160751.0, 1986031.0],
+["2124", "B", "A", 3197.7, 522.6, 12375.4, 3727.8, 3655.0, 4560.6, 410.5, 408.7, 152948.0, 49835.0, 216983.0, 842519.0, 140994.0, 483821.0, 184534.0, 76993.0, 21793.0, 598794.0, 1067493.0, 248337.0, 420163.0, 689741.0],
+["2124", "B", "M", 848.2, 115.4, 1251.0, 581.0, 518.3, 643.2, 416.0, 408.7, 30854.0, 16473.0, 133.0, 163096.0, 51074.0, 970.0, 0.0, 10557.0, 456.0, 117269.0, 150993.0, 35246.0, 47715.0, 86592.0],
+["2124", "B", "Y", 4045.9, 638.0, 13626.4, 4308.8, 4173.3, 5203.9, 411.1, 408.7, 183802.0, 66308.0, 217117.0, 1005615.0, 192068.0, 484791.0, 184534.0, 87550.0, 22249.0, 716063.0, 1218486.0, 283583.0, 467878.0, 776333.0],
+["2124", "C", "A", 3345.3, 508.0, 9381.4, 3319.4, 3186.0, 3411.2, 323.9, 291.7, 311100.0, 159922.0, 407940.0, 787911.0, 178738.0, 760304.0, 271035.0, 96661.0, 11923.0, 706588.0, 797275.0, 257377.0, 599052.0, 527528.0],
+["2124", "C", "M", 1069.4, 121.8, 1330.6, 677.0, 428.2, 454.1, 427.4, 291.7, 90784.0, 48146.0, 41624.0, 193355.0, 56048.0, 1781.0, 0.0, 13940.0, 8861.0, 0.0, 106738.0, 34552.0, 68031.0, 66475.0],
+["2124", "C", "Y", 4414.7, 629.8, 10711.9, 3996.4, 3614.1, 3865.3, 335.4, 291.7, 401884.0, 208068.0, 449564.0, 981266.0, 234786.0, 762084.0, 271035.0, 110601.0, 20784.0, 706588.0, 904013.0, 291929.0, 667082.0, 594003.0],
+["2124", "D", "A", 9831.7, 1875.4, 18136.0, 6534.2, 10221.0, 6449.8, 610.9, 644.9, 1030373.0, 298957.0, 5534856.0, 1967805.0, 729573.0, 4659453.0, 1989974.0, 921572.0, 249633.0, 4667684.0, 1704464.0, 696211.0, 4871128.0, 1584066.0],
+["2124", "D", "M", 1084.8, 206.5, 2156.1, 666.0, 1577.7, 988.0, 501.9, 644.9, 113399.0, 49243.0, 1481875.0, 190023.0, 74945.0, 5902.0, 0.0, 96073.0, 129839.0, 217101.0, 261621.0, 107504.0, 553185.0, 202354.0],
+["2124", "D", "Y", 10916.5, 2081.9, 20292.1, 7200.2, 11798.6, 7437.7, 598.8, 644.9, 1143772.0, 348199.0, 7016732.0, 2157828.0, 804517.0, 4665355.0, 1989974.0, 1017645.0, 379472.0, 4884785.0, 1966084.0, 803715.0, 5424313.0, 1786419.0],
+["2124", "E", "A", 502.4, 91.5, 3807.8, 1076.0, 627.7, 830.8, 118.8, 118.8, 6965.0, 0.0, 0.0, 281721.0, 62388.0, 0.0, 0.0, 0.0, 0.0, 0.0, 207438.0, 53881.0, 2.0, 186106.0],
+["2124", "E", "M", 116.8, 19.0, 531.1, 186.0, 115.5, 152.9, 118.8, 118.8, 3604.0, 0.0, 0.0, 45975.0, 5564.0, 0.0, 0.0, 0.0, 0.0, 0.0, 38169.0, 9912.0, 0.0, 23263.0],
+["2124", "E", "Y", 619.3, 110.4, 4338.9, 1262.0, 743.2, 983.8, 118.8, 118.8, 10569.0, 0.0, 0.0, 327696.0, 67951.0, 0.0, 0.0, 0.0, 0.0, 0.0, 245607.0, 63793.0, 2.0, 209369.0],
+["2131", "PMY", "A", 3343.2, 790.7, 5925.8, 2479.0, 3774.5, 2665.5, 254.4, 250.5, 310139.0, 71001.0, 1252604.0, 741531.0, 675204.0, 2871787.0, 616642.0, 402752.0, 185130.0, 1370802.0, 714610.0, 806195.0, 3784463.0, 649890.0],
+["2131", "PMY", "M", 471.4, 105.6, 664.7, 294.0, 437.1, 308.7, 253.6, 250.5, 32908.0, 2849.0, 0.0, 90654.0, 96204.0, 1355.0, 0.0, 32755.0, 33849.0, 455862.0, 82758.0, 93365.0, 472659.0, 82306.0],
+["2131", "PMY", "Y", 3814.5, 896.3, 6590.5, 2773.0, 4211.6, 2974.2, 254.3, 250.5, 343048.0, 73850.0, 1252604.0, 832185.0, 771408.0, 2873141.0, 616642.0, 435507.0, 218979.0, 1826664.0, 797368.0, 899560.0, 4257122.0, 732196.0]];
+const MON={"2121": [[8436431.0, 11755497.0, 4529.2, 1044.0], [9880391.0, 10776845.0, 3808.4, 1052.1], [8421686.0, 10628406.0, 4344.6, 1021.3], [13274562.0, 9423890.0, 5071.1, 1266.2], [9927095.0, 8827159.0, 4480.8, 1147.0], [8979398.0, 8627695.0, 4297.3, 1198.0], [8476240.0, 8473030.0, 4943.2, 1189.6], [8593092.0, 9543669.0, 4786.2, 1097.1], [7152891.0, 11332602.0, 5640.1, 1022.7]], "2124": [[3883700.0, 5545596.0, 3829.7, 630.9], [4622022.0, 5456977.0, 2872.2, 659.3], [3963157.0, 5482220.0, 3144.8, 618.0], [4899599.0, 5750748.0, 3411.0, 775.6], [6276551.0, 4019000.0, 3184.5, 559.8], [6019545.0, 4550231.0, 3170.8, 601.3], [4545861.0, 3835091.0, 3955.8, 609.4], [4376616.0, 4094604.0, 4288.0, 602.5], [4186891.0, 5784273.0, 4529.0, 727.9]], "2131": [[848735.0, 1128343.0, 397.0, 102.4], [885555.0, 1248506.0, 309.9, 93.0], [1041985.0, 1032935.0, 344.9, 83.5], [991812.0, 1042238.0, 404.5, 97.3], [762741.0, 855800.0, 477.1, 112.8], [717403.0, 886492.0, 484.2, 94.7], [664774.0, 805223.0, 440.9, 104.3], [625904.0, 914305.0, 484.6, 102.8], [223969.0, 1253554.0, 471.4, 105.6]]};
+const PUP={"2121": [["Borate", 15757.0, 31288.0, 32141.0], ["CuSO4", 1607.0, 1254.0, 1607.0], ["Dolomite", 168720.0, 160250.0, 168720.0], ["Kieserite", 0.0, 23050.0, 0.0], ["MOP", 251845.0, 267719.0, 251845.0], ["NPK 12-12-17-2+TE", 0.0, 525050.0, 0.0], ["NPK 13-6-27", 1446051.0, 529787.0, 1909000.0], ["NPK 15-15-6-4", 0.0, 300.0, 0.0], ["RP", 322721.0, 287878.0, 322721.0], ["SRF", 0.0, 150.0, 0.0], ["Urea", 471322.0, 480215.0, 471322.0]], "2124": [["Borate", 8731.0, 9888.0, 18621.0], ["CuSO4", 3471.0, 1587.0, 3471.0], ["Dolomite", 138938.0, 91339.0, 138938.0], ["Kieserite", 143613.0, 102401.0, 143613.0], ["MOP", 321545.0, 281130.0, 321545.0], ["NPK 13-6-27", 996806.0, 667868.0, 1310108.0], ["NPK 15-15-6-4", 0.0, 727.0, 0.0], ["RP", 222515.0, 222372.0, 222515.0], ["SRF", 0.0, 106.0, 0.0], ["Urea", 288148.0, 276319.0, 288148.0]], "2131": [["Borate", 1345.0, 1425.0, 2860.0], ["CuSO4", 511.0, 375.0, 511.0], ["Kieserite", 4258.0, 4100.0, 4258.0], ["MOP", 30073.0, 28100.0, 30073.0], ["NPK 12-12-17-2+TE", 0.0, 7450.0, 0.0], ["NPK 13-6-27", 179211.0, 99500.0, 212170.0], ["RP", 33295.0, 1000.0, 33295.0], ["Urea", 45178.0, 45500.0, 45178.0]]};
+const PUPA={"2121|A": [["Borate", 3182.0, 6699.0, 6631.0], ["CuSO4", 800.0, 534.0, 800.0], ["Dolomite", 58820.0, 51350.0, 58820.0], ["MOP", 87702.0, 85519.0, 87702.0], ["NPK 12-12-17-2+TE", 0.0, 80500.0, 0.0], ["NPK 13-6-27", 465897.0, 150737.0, 465897.0], ["RP", 81518.0, 46368.0, 81518.0], ["Urea", 102018.0, 89125.0, 102018.0]], "2121|B": [["Borate", 3774.0, 7559.0, 7548.0], ["Dolomite", 38096.0, 36950.0, 38096.0], ["MOP", 88647.0, 88500.0, 88647.0], ["NPK 12-12-17-2+TE", 0.0, 171700.0, 0.0], ["NPK 13-6-27", 493290.0, 80400.0, 493290.0], ["NPK 15-15-6-4", 0.0, 300.0, 0.0], ["RP", 97811.0, 102560.0, 97811.0], ["Urea", 110112.0, 107990.0, 110112.0]], "2121|C": [["Borate", 4441.0, 6636.0, 8883.0], ["Dolomite", 42258.0, 26600.0, 42258.0], ["MOP", 28504.0, 27750.0, 28504.0], ["NPK 12-12-17-2+TE", 0.0, 217850.0, 0.0], ["NPK 13-6-27", 237914.0, 14150.0, 462639.0], ["RP", 87512.0, 79000.0, 87512.0], ["SRF", 0.0, 150.0, 0.0], ["Urea", 130227.0, 129000.0, 130227.0]], "2121|D": [["Borate", 4360.0, 8655.0, 9079.0], ["CuSO4", 807.0, 448.0, 807.0], ["Dolomite", 29546.0, 29500.0, 29546.0], ["MOP", 46992.0, 47050.0, 46992.0], ["NPK 13-6-27", 248950.0, 249100.0, 487174.0], ["RP", 55880.0, 55900.0, 55880.0], ["Urea", 128965.0, 116250.0, 128965.0]], "2121|H": [["Borate", 0.0, 1739.0, 0.0], ["CuSO4", 0.0, 272.0, 0.0], ["Dolomite", 0.0, 15850.0, 0.0], ["Kieserite", 0.0, 23050.0, 0.0], ["MOP", 0.0, 18900.0, 0.0], ["NPK 12-12-17-2+TE", 0.0, 55000.0, 0.0], ["NPK 13-6-27", 0.0, 35400.0, 0.0], ["RP", 0.0, 4050.0, 0.0], ["Urea", 0.0, 37850.0, 0.0]], "2124|A": [["Borate", 3976.0, 4770.0, 8747.0], ["CuSO4", 2382.0, 1587.0, 2382.0], ["Dolomite", 50486.0, 10570.0, 50486.0], ["Kieserite", 87709.0, 60007.0, 87709.0], ["MOP", 166294.0, 166318.0, 166294.0], ["NPK 13-6-27", 643983.0, 322040.0, 643983.0], ["RP", 119759.0, 119783.0, 119759.0], ["SRF", 0.0, 30.0, 0.0], ["Urea", 142332.0, 141198.0, 142332.0]], "2124|B": [["Borate", 192.0, 346.0, 538.0], ["CuSO4", 461.0, 0.0, 461.0], ["Dolomite", 7686.0, 0.0, 7686.0], ["Kieserite", 0.0, 5230.0, 0.0], ["MOP", 3843.0, 3843.0, 3843.0], ["NPK 13-6-27", 37664.0, 18832.0, 37664.0], ["NPK 15-15-6-4", 0.0, 102.0, 0.0], ["RP", 0.0, 19.0, 0.0], ["SRF", 0.0, 11.0, 0.0], ["Urea", 8648.0, 8648.0, 8648.0]], "2124|C": [["Borate", 517.0, 1057.0, 1035.0], ["MOP", 2921.0, 2921.0, 2921.0], ["NPK 13-6-27", 30775.0, 31537.0, 59694.0], ["NPK 15-15-6-4", 0.0, 421.0, 0.0], ["RP", 7237.0, 15642.0, 7237.0], ["SRF", 0.0, 43.0, 0.0], ["Urea", 13665.0, 13666.0, 13665.0]], "2124|D": [["Borate", 4046.0, 3715.0, 8301.0], ["CuSO4", 628.0, 0.0, 628.0], ["Dolomite", 80766.0, 80769.0, 80766.0], ["Kieserite", 55904.0, 37164.0, 55904.0], ["MOP", 148487.0, 108048.0, 148487.0], ["NPK 13-6-27", 284384.0, 295459.0, 568767.0], ["NPK 15-15-6-4", 0.0, 204.0, 0.0], ["RP", 95519.0, 86928.0, 95519.0], ["SRF", 0.0, 22.0, 0.0], ["Urea", 123503.0, 112807.0, 123503.0]], "2131|PMY": [["Borate", 1345.0, 1425.0, 2860.0], ["CuSO4", 511.0, 375.0, 511.0], ["Kieserite", 4258.0, 4100.0, 4258.0], ["MOP", 30073.0, 28100.0, 30073.0], ["NPK 12-12-17-2+TE", 0.0, 7450.0, 0.0], ["NPK 13-6-27", 179211.0, 99500.0, 212170.0], ["RP", 33295.0, 1000.0, 33295.0], ["Urea", 45178.0, 45500.0, 45178.0]]};
+const PUPX={"2121": [215987.0, 89297.0], "2124": [937699.0, 693641.0], "2131": [0.0, 0.0]};
+const POK={"2121|A": [502.88, 69209.0, 515.65, 70871.0], "2121|B": [549.09, 75483.0, 604.69, 82865.0], "2121|C": [626.91, 86818.0, 671.02, 92607.0], "2121|D": [655.49, 89223.0, 655.49, 89223.0], "2121|E": [0.0, 0.0, 0.0, 0.0], "2121|F": [66.22, 8031.0, 66.22, 8031.0], "2121|G": [71.08, 9661.0, 71.08, 9661.0], "2121|H": [272.07, 32424.0, 272.07, 32424.0], "2124|A": [678.1, 95384.0, 678.1, 95384.0], "2124|B": [61.36, 8313.0, 66.27, 9010.0], "2124|C": [98.53, 13945.0, 111.07, 15743.0], "2124|D": [562.52, 80112.0, 545.07, 77616.0], "2124|E": [0.0, 0.0, 0.0, 0.0], "2124|H": [0.0, 0.0, 0.0, 0.0], "2124|I": [0.0, 0.0, 0.0, 0.0], "2124|J": [0.0, 0.0, 0.0, 0.0], "2131|PMY": [254.24, 30399.0, 254.07000000000002, 30381.0]};
+const LANG={"2121": [164022.0, 11798.0], "2124": [2638.0, 0.0], "2131": [12347.0, 0.0]};
+// per BA+afd+periode: [ha TM, ha panen (HEKTAR_PANEN rata-rata bulanan), ton dari blok TM]
+const TMD={"2121AA": [502.9, 567.9, 7965.2], "2121AM": [502.9, 569.5, 985.7], "2121AY": [502.9, 568.1, 8950.9], "2121BA": [549.1, 590.4, 8045.8], "2121BM": [549.1, 593.7, 1270.6], "2121BY": [549.1, 590.7, 9316.4], "2121CA": [626.9, 673.5, 7343.0], "2121CM": [626.9, 719.3, 1759.1], "2121CY": [626.9, 678.6, 9102.0], "2121DA": [655.5, 642.9, 9741.7], "2121DM": [655.5, 642.9, 1097.7], "2121DY": [655.5, 642.9, 10839.3], "2121FA": [66.2, 66.2, 138.7], "2121FM": [66.2, 66.2, 30.3], "2121FY": [66.2, 66.2, 168.9], "2121GA": [71.1, 63.2, 326.7], "2121GM": [71.1, 63.2, 53.6], "2121GY": [71.1, 63.2, 380.3], "2121HA": [272.1, 272.1, 2108.5], "2121HM": [272.1, 272.1, 284.2], "2121HY": [272.1, 272.1, 2392.7], "2124AA": [678.1, 707.1, 10870.9], "2124AM": [678.1, 707.6, 1379.9], "2124AY": [678.1, 707.2, 12250.8], "2124BA": [58.9, 410.5, 644.5], "2124BM": [81.0, 416.0, 206.8], "2124BY": [61.4, 411.1, 851.3], "2124CA": [92.3, 323.9, 1129.4], "2124CM": [148.7, 427.4, 399.0], "2124CY": [98.5, 335.4, 1528.4], "2124DA": [571.2, 610.9, 9321.2], "2124DM": [492.7, 501.9, 1060.6], "2124DY": [562.5, 598.8, 10381.8], "2124EA": [0.0, 118.8, 0.0], "2124EM": [0.0, 118.8, 0.0], "2124EY": [0.0, 118.8, 0.0], "2131PMYA": [254.4, 253.2, 3343.2], "2131PMYM": [253.6, 252.7, 471.4], "2131PMYY": [254.3, 253.2, 3814.5]};
+// per BA+afd+periode: [budget upkeep TM, budget infra TM, budget pupuk TM, ha budget TM, share TM biaya aktual: upkeep, infra, pupuk, panen, transport]
+const ADJ={"2121AA": [995083, 754579, 3297349, 502.8, 0.999, 1.0, 0.91, 0.943, 0.883], "2121AM": [76661, 17676, 1493685, 502.8, 0.991, 1.0, 0.943, 0.925, 0.847], "2121AY": [1071744, 772255, 4791034, 502.8, 0.998, 1.0, 0.911, 0.941, 0.878], "2121BA": [936551, 914552, 3789696, 549.0, 1.0, 1.0, 0.973, 0.981, 0.95], "2121BM": [97698, 2122, 1610114, 549.0, 0.993, 1.0, 0.889, 0.957, 0.907], "2121BY": [1034249, 916673, 5399811, 549.0, 0.999, 1.0, 0.972, 0.978, 0.945], "2121CA": [1304631, 424664, 3477100, 626.9, 1.0, 1.0, 0.974, 0.977, 0.972], "2121CM": [194185, 45100, 172342, 626.9, 0.997, 1.0, 1.0, 0.945, 0.888], "2121CY": [1498816, 469764, 3649442, 626.9, 1.0, 1.0, 0.975, 0.972, 0.962], "2121DA": [1224205, 331244, 4339718, 632.9, 1.0, 1.0, 1.0, 1.0, 1.0], "2121DM": [97730, 50284, 0, 632.9, 1.0, 1.0, 1.0, 1.0, 1.0], "2121DY": [1321936, 381528, 4339719, 632.9, 1.0, 1.0, 1.0, 1.0, 1.0], "2121FA": [50061, 42229, 0, 25.2, 1.0, 1.0, null, 1.0, null], "2121FM": [4271, 2183, 0, 25.2, 1.0, null, null, 1.0, null], "2121FY": [54333, 44412, 0, 25.2, 1.0, 1.0, null, 1.0, null], "2121GA": [106809, 36678, 0, 48.8, 1.0, 1.0, null, 1.0, 1.0], "2121GM": [13900, 85, 0, 48.8, 1.0, null, null, null, 1.0], "2121GY": [120710, 36763, 0, 48.8, 1.0, 1.0, null, 1.0, 1.0], "2121HA": [402215, 136985, 0, 248.5, 1.0, 1.0, 1.0, 1.0, 1.0], "2121HM": [50072, 4121, 0, 248.5, 1.0, 1.0, null, 1.0, 1.0], "2121HY": [452287, 141107, 0, 248.5, 1.0, 1.0, 1.0, 1.0, 1.0], "2124AA": [975892, 558896, 5953350, 678.5, 1.0, 1.0, 0.987, 0.972, 0.998], "2124AM": [124699, 17004, 1981002, 678.5, 0.996, 1.0, 0.768, 0.961, 1.0], "2124AY": [1100591, 575900, 7934352, 678.5, 0.999, 1.0, 0.978, 0.971, 0.998], "2124BA": [76993, 21793, 598794, 51.5, 0.8, 1.0, 0.142, 0.293, 0.693], "2124BM": [10557, 456, 117269, 51.5, 0.327, 1.0, 0.003, 0.164, 0.212], "2124BY": [87550, 22249, 716063, 51.5, 0.737, 1.0, 0.131, 0.276, 0.611], "2124CA": [96661, 11923, 706588, 73.5, 0.939, 1.0, 0.242, 0.509, 0.78], "2124CM": [13940, 8861, 0, 73.5, 0.622, null, 0.332, 0.327, 0.468], "2124CY": [110601, 20784, 706588, 73.5, 0.907, 1.0, 0.246, 0.484, 0.722], "2124DA": [921572, 249633, 4667684, 571.2, 0.999, 1.0, 0.92, 0.991, 1.0], "2124DM": [96073, 129839, 217101, 492.7, 0.994, 1.0, 0.991, 0.98, 1.0], "2124DY": [1017645, 379472, 4884785, 562.5, 0.999, 1.0, 0.934, 0.99, 1.0], "2124EA": [0, 0, 0, 0.0, 1.0, 1, 0, 0.814, null], "2124EM": [0, 0, 0, 0.0, 1.0, null, 0, 0.996, null], "2124EY": [0, 0, 0, 0.0, 1.0, 1, 0, 0.909, null], "2131PMYA": [402752, 185130, 1370802, 250.5, 1.0, 1.0, 1.0, 1.0, 1.0], "2131PMYM": [32755, 33849, 455862, 250.5, 1.0, 1.0, null, 1.0, 1.0], "2131PMYY": [435507, 218979, 1826664, 250.5, 1.0, 1.0, 1.0, 1.0, 1.0]};
+
+const BAS=["2121","2124","2131"],BN={"2121":"SEK","2124":"SBR","2131":"PMY"},BF={"2121":"Sekernan Estate","2124":"Sawit Brahma","2131":"Plasma Pemayung"};
+const VN=["EC total","EC tanpa pupuk","EC tanpa pupuk & infra","EC tanpa pupuk, infra & penyusutan"];
+const CN=["Upkeep","Infrastruktur","Pemupukan","Panen","Transport","OVH (umum, AMP, VRA)","Penyusutan"];
+const st={sc:"ALL",per:"Y",view:0,pa:"ALL"};
+const $=id=>document.getElementById(id);
+const nf=(x,d=0)=>x==null||!isFinite(x)?"–":x.toLocaleString("id-ID",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pc=(x,d=1)=>x==null||!isFinite(x)?"–":nf(x*100,d)+"%";
+const dv=(a,b)=>b>0&&a>=0?a/b:null;
+function mk(rs){const o={hbt:0,ta:Array(7).fill(0),tb:Array(7).fill(0),tm:0,hp:0,tt:0,ton:0,bbc:0,hap:0,hk:0,tonb:0,hkb:0,ha:0,hab:0,a:Array(7).fill(0),b:Array(7).fill(0)};
+ for(const r of rs){const t=TMD[r[0]+r[1]+r[2]]||[0,0,0];o.tm+=t[0];o.hp+=t[1];o.tt+=t[2];o.ton+=r[3];o.bbc+=r[4];o.hap+=r[5];o.hk+=r[6];o.tonb+=r[7];o.hkb+=r[8];o.ha+=r[9];o.hab+=r[10];for(let i=0;i<7;i++){o.a[i]+=r[11+i];o.b[i]+=r[18+i]}
+  const d=(ADJ[r[0]+r[1]+r[2]]||[]).map(x=>x==null?1:x),sh=[d[4]??1,d[5]??1,d[6]??1,d[7]??1,d[8]??1,1,1];
+  o.hbt+=d[3]||0;for(let i=0;i<7;i++){o.ta[i]+=r[11+i]*sh[i];o.tb[i]+=i<3?(d[i]||0):r[18+i]}}return o}
+const EX=[[],[2],[2,1],[2,1,6]];
+const cs=(arr,v)=>arr.reduce((s,x,i)=>s+(EX[v].includes(i)?0:x),0);
+function met(o,v=st.view){const A=cs(o.a,v),B=cs(o.b,v);return{A,B,kgA:o.ton>0?A/o.ton:null,kgB:o.tonb>0?B/o.tonb:null,haA:o.tm>0?cs(o.ta,v)/o.tm:null,haB:o.hbt>0?cs(o.tb,v)/o.hbt:null}}
+function delta(a,b,lowGood=true){if(a==null||b==null||!isFinite(a)||!isFinite(b)||b==0)return"–";const d=a/b-1;const good=lowGood?d<=0:d>=0;const ar=d>=0?"▲":"▼";
+ return`<span class="dot ${Math.abs(d)<0.005?"na":good?"ok":"no"}"></span>${ar} ${nf(Math.abs(d)*100,1)}%`}
+function ach(a,b){if(!(b>0)||!(a>=0))return"–";const d=a/b;return`<span class="dot ${d>=1?"ok":"no"}"></span>${nf(d*100,1)}%`}
+const per=()=>R.filter(r=>r[2]===st.per);
+function rowsOf(){ // [label, obj]
+ const P=per();
+ if(st.sc==="ALL")return BAS.map(b=>[BN[b],mk(P.filter(r=>r[0]===b))]);
+ return P.filter(r=>r[0]===st.sc).map(r=>["Afd "+r[1],mk([r])]);
+}
+function totObj(){const P=per();return mk(st.sc==="ALL"?P:P.filter(r=>r[0]===st.sc))}
+const totLabel=()=>st.sc==="ALL"?"Region Sumatera":BN[st.sc]+" ("+BF[st.sc]+")";
+function table(id,head,body){$(id).innerHTML="<thead><tr>"+head.map(h=>`<th>${h}</th>`).join("")+"</tr></thead><tbody>"+body+"</tbody>"}
+const tr=(cells,cls="")=>`<tr class="${cls}">`+cells.map(c=>`<td>${c}</td>`).join("")+"</tr>";
+
+function seg(id,items,key){const el=$(id);el.innerHTML="";items.forEach(([v,t])=>{const b=document.createElement("button");b.textContent=t;b.setAttribute("aria-pressed",st[key]===v);b.onclick=()=>{st[key]=v;render()};el.appendChild(b)})}
+
+function render(){
+ seg("sScope",[["ALL","Region"],["2121","SEK"],["2124","SBR"],["2131","PMY"]],"sc");
+ seg("sPer",[["Y","YTD Jan–Sep"],["M","MTD Sep"],["A","YTD Jan–Agu (lengkap)"]],"per");
+ seg("sView",[[0,"Total"],[1,"Tanpa pupuk"],[2,"Tanpa pupuk & infra"],[3,"Tanpa pupuk, infra & susut"]],"view");
+ const T=totObj(),m=met(T),m0=met(T,0);
+ const pn={Y:"Jan–Sep 2026",M:"Sep 2026",A:"Jan–Agu 2026"}[st.per];
+ if($("inc"))$("inc").hidden=st.per==="A";
+ $("kpis").innerHTML=[
+  [nf(T.ton)+" ton","Produksi TBS · "+pn,"Pencapaian budget "+pc(dv(T.ton,T.tonb))],
+  [nf(T.ton/T.hp,2)+" t/ha panen","Yield ha panen","Yield TM "+nf(T.tt/T.tm,2)+" · TM "+nf(T.tm)+" ha · ha panen "+nf(T.hp)+" ha"],
+  [nf(T.ton/T.hk,2)+" t/HK","Output panen (budget "+nf(T.tonb/T.hkb,2)+")","HA/HK "+nf(T.hap/T.hk,2)],
+  [nf(T.hk)+" HK","HK panen","Budget "+nf(T.hkb)+" HK"],
+  [nf(m.kgA)+" Rp/Kg","EC · "+VN[st.view],"Budget "+nf(m.kgB)+" · selisih "+delta(m.kgA,m.kgB)],
+  [nf(m0.A/1e6,2)+" M","Biaya EC total (Rp miliar)","Budget "+nf(m0.B/1e6,2)+" M · "+delta(m0.A,m0.B)]
+ ].map(k=>`<div class="kpi"><div class="v">${k[0]}</div><div class="l">${k[1]}</div><div class="d">${k[2]}</div></div>`).join("");
+
+ const rows=rowsOf();
+ // produksi
+ const pr=(l,o,c="")=>tr([l,nf(o.tm),nf(o.hp),nf(o.ton),nf(o.tonb),ach(o.ton,o.tonb),nf(o.tt/o.tm,2),nf(o.ton/o.hp,2),nf(o.ton/o.hk,2),nf(o.tonb/o.hkb,2),nf(o.hap/o.hk,2)],c);
+ table("tProd",["Unit","Luas TM (ha)","Ha panen (ha)","Produksi (ton)","Budget (ton)","Ach. budget","Yield TM (t/ha TM)","Yield ha panen (t/ha)","Output (t/HK)","Output budget","HA/HK"],rows.map(([l,o])=>pr(l,o)).join("")+pr(totLabel(),T,"tot"));
+ // EC
+ $("viewNote").textContent=VN[st.view]+" — "+(["semua komponen","tanpa Pemupukan","tanpa Pemupukan dan Infrastruktur","tanpa Pemupukan, Infrastruktur dan Penyusutan"][st.view])+". Selisih ▼ = lebih hemat dari budget.";
+ const er=(l,o,c="")=>{const x=met(o);return tr([l,nf(x.A/1000),nf(x.B/1000),nf(x.kgA),nf(x.kgB),delta(x.kgA,x.kgB),nf(x.haA),nf(x.haB),delta(x.haA,x.haB)],c)};
+ table("tEC",["Unit","Biaya (Rp juta)","Budget (Rp juta)","Rp/Kg","Budget Rp/Kg","Selisih Rp/Kg","Rp ribu/Ha TM","Budget Rp ribu/Ha TM","Selisih Rp/Ha"],rows.map(([l,o])=>er(l,o)).join("")+er(totLabel(),T,"tot"));
+ table("tViews",["Sudut pandang","Rp/Kg","Budget","Selisih","Rp ribu/Ha TM","Budget","Selisih"],VN.map((n,v)=>{const x=met(T,v);return tr([n,nf(x.kgA),nf(x.kgB),delta(x.kgA,x.kgB),nf(x.haA),nf(x.haB),delta(x.haA,x.haB)],v===st.view?"tot":"")}).join(""));
+ barChart(rows);lineChart();monTable();
+ // komponen
+ let cb="";CN.forEach((n,i)=>{const A=T.a[i],B=T.b[i];cb+=tr([n,nf(A/1000),nf(B/1000),nf(A/T.ton),nf(B/T.tonb),delta(A/T.ton,B/T.tonb),nf(T.ta[i]/T.tm),nf(T.tb[i]/T.hbt),delta(T.ta[i]/T.tm,T.tb[i]/T.hbt)])});
+ const x0=met(T,0);cb+=tr(["EC total",nf(x0.A/1000),nf(x0.B/1000),nf(x0.kgA),nf(x0.kgB),delta(x0.kgA,x0.kgB),nf(x0.haA),nf(x0.haB),delta(x0.haA,x0.haB)],"tot");
+ table("tComp",["Komponen","Biaya (Rp juta)","Budget (Rp juta)","Rp/Kg","Budget Rp/Kg","Selisih","Rp ribu/Ha TM","Budget Rp ribu/Ha TM","Selisih"],cb);
+ // pupuk
+ const keys=st.sc==="ALL"?BAS:[st.sc];
+ const pk=Object.keys(PUPA).filter(k=>keys.includes(k.split("|")[0])).sort((x,y)=>x.replace("(","~").localeCompare(y.replace("(","~")));
+ const plabel=k=>{const [b,a]=k.split("|");return a==="PMY"?"PMY":a.startsWith("(")?"Tanpa afd":(st.sc==="ALL"?BN[b]+" ":"")+a};
+ if(st.pa!=="ALL"&&!pk.includes(st.pa))st.pa="ALL";
+ seg("sPupAfd",[["ALL",st.sc==="ALL"?"Seluruh Region":"Seluruh "+BN[st.sc]]].concat(pk.map(k=>[k,plabel(k)])),"pa");
+ const px=keys.reduce((s,b)=>{const x=PUPX[b]||[0,0];return[s[0]+x[0],s[1]+x[1]]},[0,0]);
+ const sel=st.pa==="ALL"?pk:[st.pa];const agg={};
+ sel.forEach(k=>PUPA[k].forEach(([j,t,a,f])=>{agg[j]=agg[j]||[0,0,0];agg[j][0]+=t;agg[j][1]+=a;agg[j][2]+=f}));
+ const names=Object.keys(agg).sort((x,y)=>x.localeCompare(y,undefined,{sensitivity:"base"}));let npk=[0,0,0];names.filter(n=>n.startsWith("NPK")).forEach(n=>{npk[0]+=agg[n][0];npk[1]+=agg[n][1];npk[2]+=agg[n][2]});
+ let tt=[0,0,0];names.forEach(n=>{tt[0]+=agg[n][0];tt[1]+=agg[n][1];tt[2]+=agg[n][2]});
+ const pct=(a,b)=>b>0?nf(a/b*100,1)+"%":(a>0?"tanpa rek.":"–");
+ const rt=a=>pct(a[1],a[2]);
+ const pr2=(n,a,c="")=>tr([n,nf(a[2]),nf(a[0]),nf(a[1]),pct(a[1],a[0]),pct(a[1],a[2])],c);
+ table("tPup",["Jenis pupuk","Rekomendasi 1 tahun (kg)","Rekomendasi YTD (kg)","Aktual YTD (kg)","Aktual / rek. YTD","Aktual YTD / rek. 1 tahun"],names.map(n=>pr2(n,agg[n])).join("")+pr2("Subtotal NPK",npk,"tot")+pr2("Total semua jenis",tt,"tot"));
+ // dosis per Ha TM / pokok TM: rekomendasi 1 tahun / luas TM rata-rata setahun; aktual YTD / luas TM rata-rata YTD
+ {const dk=sel.filter(k=>POK[k]&&(POK[k][0]>0||POK[k][2]>0));const S=i=>dk.reduce((s,k)=>s+POK[k][i],0);const H0=S(0),P0=S(1),H1=S(2),P1=S(3);
+ const dg={};dk.forEach(k=>PUPA[k].forEach(([j,t,a,f])=>{dg[j]=dg[j]||[0,0,0];dg[j][0]+=t;dg[j][1]+=a;dg[j][2]+=f}));
+ const dn=Object.keys(dg).sort((x,y)=>x.localeCompare(y,undefined,{sensitivity:"base"}));
+ const d=(v,q)=>q>0?nf(v/q,2):"–";const g=(v,q)=>q>0?nf(v/q*1000,0):"–";
+ const dr=(n,a,c="")=>tr([n,d(a[2],H1),d(a[1],H0),a[2]>0?nf(a[1]/a[2]*100,1)+"%":"–",g(a[2],P1),g(a[1],P0)],c);
+ let dnp=[0,0,0],dtt=[0,0,0];dn.forEach(n=>{[0,1,2].forEach(i=>dtt[i]+=dg[n][i]);if(n.startsWith("NPK"))[0,1,2].forEach(i=>dnp[i]+=dg[n][i])});
+ table("tDos",["Jenis pupuk","Rekomendasi 1 tahun kg/Ha TM","Aktual YTD kg/Ha TM","Aktual YTD / rek. 1 tahun","Rekomendasi 1 tahun gram/pokok","Aktual YTD gram/pokok"],dn.map(n=>dr(n,dg[n])).join("")+dr("Subtotal NPK",dnp,"tot")+dr("Total semua jenis",dtt,"tot"));
+ $("dosNote").textContent="Rekomendasi = rencana 1 tahun penuh (Jan–Des) dibagi rata-rata luas TM ("+nf(H1,1)+" Ha) dan pokok TM ("+nf(P1)+") setahun, termasuk blok yang direncanakan menjadi TM; aktual = kg YTD dibagi rata-rata luas TM ("+nf(H0,1)+" Ha) dan pokok TM ("+nf(P0)+") Jan–September 2026. Dosis kumulatif, bukan per putaran. Afdeling tanpa luas TM (atau “Tanpa afd”) tidak dihitung."}
+ $("pupNote").textContent=(st.per!=="Y"?"Tabel pupuk selalu Jan–Sep (data periode lain tidak ditarik). ":"")+"Selisih biaya pupuk terhadap budget ada di tabel komponen. Aktual melebihi rekomendasi belum tentu salah karena pupuk bisa disubstitusi antar jenis. Hanya pupuk yang diaplikasikan di blok TM: aktual = STATUS_MATURITY “TM”, rekomendasi = status “TM (Makro/Mikro)”. Dikeluarkan (TBM 2/3 dan baris tanpa status blok): "+nf(px[1])+" kg aktual dan "+nf(px[0])+" kg rekomendasi. Rekomendasi = TARGET_KG di INT_PUPUK_TARGET (pemetaan sebagai rekomendasi belum dikonfirmasi); PMY = afd A + C.";
+ // langsir
+ table("tLang",["BA","Biaya YTD (Rp juta)","Rp/Kg YTD","Biaya MTD Sep (Rp juta)"],BAS.map(b=>{const t=mk(R.filter(r=>r[0]===b&&r[2]==="Y")).ton;return tr([BN[b],nf(LANG[b][0]/1000,1),nf(LANG[b][0]/t,1),nf(LANG[b][1]/1000,1)])}).join(""));
+ matrix();
+ rank();
+}
+function rank(){
+ const P=per().filter(r=>r[9]>=100&&r[3]>0).map(r=>{const o=mk([r]);return{l:r[1]==="PMY"?"PMY":BN[r[0]]+"-"+r[1],ha:o.ha,bbc:o.ton/o.tonb,y:o.ton/o.hp,out:o.ton/o.hk,ec:met(o,3).kgA}});
+ const rk=(k,asc)=>{const s=[...P].sort((a,b)=>asc?a[k]-b[k]:b[k]-a[k]);P.forEach(p=>p["r"+k]=s.indexOf(p)+1)};
+ rk("bbc");rk("y");rk("out");rk("ec",true);P.forEach(p=>p.sum=p.rbbc+p.ry+p.rout+p.rec);P.sort((a,b)=>a.sum-b.sum||a.l.localeCompare(b.l));
+ table("tRank",["#","Afdeling","Ha","Ach. produksi","Yield ha panen","Output t/HK","EC* Rp/Kg","Σ peringkat"],P.map((p,i)=>tr([i+1,p.l,nf(p.ha),pc(p.bbc,0)+" ("+p.rbbc+")",nf(p.y,2)+" ("+p.ry+")",nf(p.out,2)+" ("+p.rout+")",nf(p.ec)+" ("+p.rec+")",p.sum])).join(""));
+ const th=$("tRank").querySelector("tbody");th.querySelectorAll("tr").forEach(r=>{r.firstElementChild.style.position="static"});
+}
+function tipEl(box){let t=box.querySelector(".tip");if(!t){t=document.createElement("div");t.className="tip";t.hidden=true;box.appendChild(t)}return t}
+function bindTip(box,el,html){const t=tipEl(box);const mv=e=>{const b=box.getBoundingClientRect();t.innerHTML=html;t.hidden=false;t.style.left=Math.min(e.clientX-b.left+12,b.width-170)+"px";t.style.top=Math.max(e.clientY-b.top-34,0)+"px"};el.addEventListener("mousemove",mv);el.addEventListener("click",mv);el.addEventListener("mouseleave",()=>t.hidden=true)}
+function barChart(rows){
+ const box=$("cBar");box.innerHTML="";const D=rows.map(([l,o])=>({l,...met(o)})).filter(d=>d.kgA!=null);
+ const W=520,L=70,Rr=64,rh=36,H=D.length*rh+16,mx=Math.max(...D.map(d=>Math.max(d.kgA,d.kgB||0)))*1.0||1;
+ const sx=v=>(W-L-Rr)*v/mx;let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="EC Rp/Kg aktual vs budget">`;
+ D.forEach((d,i)=>{const y=8+i*rh;s+=`<text x="${L-8}" y="${y+17}" text-anchor="end">${d.l.replace("Afd ","")}</text>
+ <g class="h" data-i="${i}"><rect x="${L}" y="${y+2}" width="${sx(d.kgA)}" height="12" rx="3" fill="var(--s1)"/><text x="${L+sx(d.kgA)+6}" y="${y+12}">${nf(d.kgA)}</text>
+ <rect x="${L}" y="${y+17}" width="${sx(d.kgB||0)}" height="9" rx="3" fill="var(--ref)"/><text x="${L+sx(d.kgB||0)+6}" y="${y+26}">${d.kgB?nf(d.kgB):"–"}</text><rect x="0" y="${y-4}" width="${W}" height="${rh}" fill="transparent"/></g>`});
+ s+="</svg>";box.innerHTML=s;box.querySelectorAll("g.h").forEach(g=>{const d=D[+g.dataset.i];bindTip(box,g,`<b>${d.l}</b><br>Aktual ${nf(d.kgA)} Rp/Kg<br>Budget ${d.kgB?nf(d.kgB):"–"} Rp/Kg`)});
+ if(!D.length)box.textContent="Tidak ada produksi pada periode ini."
+}
+const MN=["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep"],LASTDASH=true,COL={"2121":"var(--s1)","2124":"var(--s2)","2131":"var(--s3)"};
+function lineChart(){
+ const box=$("cLine");const W=520,H=270,L=48,Rr=40,T=14,B=28;
+ const S=BAS.map(b=>MON[b].map(m=>m[0]/m[2]));const all=S.flat();let lo=Math.floor(Math.min(...all)/500)*500,hi=Math.ceil(Math.max(...all)/500)*500;
+ const N=MN.length,x=i=>L+(W-L-Rr)*i/(N-1),y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+ let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Tren EC total Rp/Kg per bulan">`;
+ for(let v=lo;v<=hi;v+=500)s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grid)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${nf(v)}</text>`;
+ MN.forEach((m,i)=>s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${m}</text>`);
+ S.forEach((a,k)=>{const c=COL[BAS[k]];s+=`<polyline fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round" points="${a.slice(0,LASTDASH?N-1:N).map((v,i)=>x(i)+","+y(v)).join(" ")}"/>`;
+  if(LASTDASH)s+=`<line x1="${x(N-2)}" y1="${y(a[N-2])}" x2="${x(N-1)}" y2="${y(a[N-1])}" stroke="${c}" stroke-width="2" stroke-dasharray="4 3"/>`;
+  a.forEach((v,i)=>s+=`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="${LASTDASH&&i==N-1?"var(--surf)":c}" stroke="${LASTDASH&&i==N-1?c:"var(--surf)"}" stroke-width="2"/>`);
+  s+=`<text x="${x(N-1)+7}" y="${y(a[N-1])+4}">${BN[BAS[k]]}</text>`});
+ s+=`<line id="xh" y1="${T}" y2="${H-B}" stroke="var(--mut)" stroke-dasharray="3 3" visibility="hidden"/>`;
+ for(let i=0;i<N;i++)s+=`<rect class="hz" data-i="${i}" x="${x(i)-(W-L-Rr)/(2*(N-1))}" y="${T}" width="${(W-L-Rr)/(N-1)}" height="${H-T-B}" fill="transparent"/>`;
+ s+="</svg>";box.innerHTML=s;const xh=box.querySelector("#xh");
+ box.querySelectorAll(".hz").forEach(r=>{const i=+r.dataset.i;bindTip(box,r,`<b>${MN[i]} 2026${LASTDASH&&i==N-1?" (belum lengkap)":""}</b>`+BAS.map((b,k)=>`<br><span class="dot" style="background:${COL[b]}"></span>${BN[b]} ${nf(S[k][i])} Rp/Kg`).join(""));
+  r.addEventListener("mousemove",()=>{xh.setAttribute("x1",x(i));xh.setAttribute("x2",x(i));xh.setAttribute("visibility","visible")});r.addEventListener("mouseleave",()=>xh.setAttribute("visibility","hidden"))});
+}
+function monTable(){
+ let b="";MN.forEach((m,i)=>{b+=tr([m,...BAS.map(k=>nf(MON[k][i][0]/MON[k][i][2])),...BAS.map(k=>nf(MON[k][i][2])),nf(BAS.reduce((a,k)=>a+MON[k][i][0],0)/BAS.reduce((a,k)=>a+MON[k][i][2],0))])});
+ table("tMon",["Bulan","SEK Rp/Kg","SBR Rp/Kg","PMY Rp/Kg","SEK ton","SBR ton","PMY ton","Region Rp/Kg"],b);
+}
+
+function matrix(){
+ const P=per();let body="";
+ const cell=(act,tgt,d=0)=>{const r=(tgt>0&&isFinite(act))?act/tgt:null;
+  return `<td class="bl">${nf(act,d)}</td><td>${tgt>0?nf(tgt,d):"–"}</td><td class="${r!=null&&r>1?"hi":""}">${r==null?"–":(r>1?"▲ ":"")+nf(r*100,0)+"%"}</td>`};
+ const line=(est,afd,o,cls="")=>{
+  const ha=i=>o.tm>0?o.ta[i]/o.tm:NaN,hb=i=>o.hbt>0?o.tb[i]/o.hbt:0;
+  return `<tr class="${cls}"><td class="es">${est}</td><td style="text-align:left">${afd}</td><td>${nf(o.tm)}</td>`+
+   cell(ha(0),hb(0))+cell(ha(1),hb(1))+cell(ha(2),hb(2))+
+   cell(o.ton>0?o.a[3]/o.ton:NaN,o.tonb>0?o.b[3]/o.tonb:0)+cell(o.ton>0?o.a[4]/o.ton:NaN,o.tonb>0?o.b[4]/o.tonb:0)+"</tr>"};
+ BAS.forEach(ba=>{const rs=P.filter(r=>r[0]===ba);rs.forEach((r,i)=>{body+=line(i?"":BN[ba],r[1],mk([r]))});body+=line(BN[ba],"TOTAL",mk(rs),"tot")});
+ body+=line("Region","TOTAL",mk(P),"tot");
+ const g=t=>`<th class="g" colspan="3">${t}</th>`;
+ $("tMat").innerHTML=`<thead><tr><th rowspan="2">Estate</th><th rowspan="2" style="text-align:left">Afd</th><th rowspan="2">Ha TM</th>${g("Upkeep (Rp ribu/Ha TM)")}${g("Infra (Rp ribu/Ha TM)")}${g("Pupuk (Rp ribu/Ha TM)")}${g("Panen (Rp/Kg)")}${g("Transport (Rp/Kg)")}</tr><tr>${"<th class='bl'>ACT</th><th>TGT</th><th>ACHV</th>".repeat(5)}</tr></thead><tbody>${body}</tbody>`;
+}
+
+render();
+</script>
+</body></html>
