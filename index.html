@@ -1,0 +1,519 @@
+Region Sumatera · PT BBB (Jambi) · BA 2121 SEK, 2124 SBR, 2131 PMY
+
+# Site Operational Report-YTD September 2026
+
+Keterangan
+
+Laporan Estate Cost Region Sumatera: produksi, EC Rp/Kg (2 klasifikasi) dan Rp/Ha (5 klasifikasi), komponen biaya, dan peringkat afdeling. MTD = September 2026, YTD = Januari – September 2026 (pilihan “YTD Jan–Agu” disimpan sebagai pembanding). BA 2132 Aksodano 1 dan 2133 Danobangko tidak diikutkan. Sumber biaya, budget, produksi (ton) dan luas TM: tabel PRS_COST.ESTATE_COST di Snowflake; ditarik 2026-10-28.
+
+Laporan
+
+Cakupan
+
+Posisi akhir September 2026
+
+## Hectare statement per afdeling dan status tanam
+
+Luas dalam hektar per afdeling menurut status tanam (TBM 0, 1, 2, 3 dan TM). Luas tertanam = KATEGORI_TANAH PLANTED; “Tidak ditanam” = tanah yang bukan PLANTED (UNPLANTABLE dan sejenisnya). SPH = jumlah pokok ÷ luas tertanam (pokok/ha). Sumber: INT_HEKTAR_BLOK per blok (HEKTAR, JML_POKOK) pada bulan terakhir laporan; PMY = afd A + C (afd B tidak ikut).
+
+## Per afdeling dan tahun tanam
+
+## Per tahun tanam (total cakupan)
+
+Cakupan
+
+Ringkasan Region Sumatera
+
+## Rekap produksi: Actual, Budget, BBC (YTD Sep) dan OL YTD Des 2026
+
+Actual = ton TBS aktual Jan–Sep. Budget = target produksi per blok (YTD Sep, dan setahun penuh untuk Des). BBC = forecast sensus (Jan–Sep) yang dilanjutkan dengan outlook BBC Okt–Des. **OL YTD Des** = aktual Jan–Sep + outlook BBC Okt–Des, sama dengan tab Produksi. Ach = Actual (atau OL) ÷ Budget atau ÷ BBC. PMY = afd A + C. Bagian ini menampilkan semua estate dan tidak mengikuti pilihan Cakupan di atas.
+
+### YTD Sep (ton)
+
+### OL YTD Des (ton)
+
+## Rekap Estate Cost Rp/Kg dan Rp/Ha TM: YTD Sep dan OL YTD Des
+
+**All cost** = tujuh komponen ESTATE_COST. **Exclude** = all cost dikurangi Pemupukan, Penyusutan dan Sewa AMP. **OL YTD Des** = produksi OL YTD Des; seluruh biaya selain Pupuk (Perawatan, Infra, Panen, Transport, Umum, Penyusutan, Sewa AMP) = aktual YTD Sep × 12/9; Pupuk = aktual + budget Pupuk Okt–Des (pembanding; skenario 90%, 95%, 100% ada di bawah). Budget Des = budget setahun ÷ target produksi setahun. Rp/Ha TM dalam ribu Rp, memakai Ha TM akhir Sep (budget: Ha TM budget semester 2), sama dengan tab Analisa. Cek: Rp/Kg Region YTD Sep ikut tabel Pencapaian cost di bawah.
+
+### Rp/Kg, all cost
+
+### Rp/Kg, exclude Pupuk, Penyusutan dan Sewa AMP
+
+### Rp ribu/Ha TM, all cost
+
+### Rp ribu/Ha TM, exclude Pupuk, Penyusutan dan Sewa AMP
+
+## Estate Cost Rp/Kg YTD Des: produksi OL dengan skenario Pemupukan 90% dan 100%
+
+Produksi Des = OL YTD Des (sama dengan di atas). Pupuk Okt–Des dihitung supaya total pupuk setahun mencapai 90% atau 100% dari rekomendasi (kg Pemupukan TM setahun): pupuk = aktual + (persentase × rekomendasi setahun − kg aktual Jan–Sep) × tarif aktual Rp/kg. Komponen lain = aktual YTD Sep × 12/9. Kolom OL (pupuk = budget Okt–Des) adalah pembanding. Karena Pemupukan dikeluarkan dari EC exclude, skenario pupuk hanya mengubah all cost. Detail per komponen dan Rp/Ha ada di tab Analisa (simulator YTD Des).
+
+### Estate Cost Rp/Kg per triwulan: aktual vs budget, Q4 bercabang pupuk 90%, 95%, 100%
+
+Estate
+
+### Ringkasan per estate: aktual vs budget (Rp/Kg) per triwulan dan YTD Des 2026
+
+### Sensitivitas pupuk Pemayung (80%, 85%, 90%) dan efeknya ke Region Sumatera, YTD Des 2026
+
+Q1–Q3 = aktual (ESTATE_COST, Rp juta ÷ ton per triwulan). YTD Des 2026 = kumulatif Jan–Des (biaya selain pupuk = aktual YTD Sep × 12/9; produksi = OL YTD Des) ÷ produksi OL YTD Des, dibanding target setahun; hanya pupuk yang bercabang (aktual + sisa kg sampai 90%, 95%, atau 100% rekomendasi setahun, × tarif Rp/kg aktual). Garis dari Q3 ke YTD Des menghubungkan nilai triwulan dengan nilai kumulatif, sehingga hanya menunjukkan arah. Angka YTD Des sama dengan tabel di atas.
+
+## Pencapaian produksi terhadap BBC dan Target
+
+Produksi = ton TBS aktual (ESTATE_COST). BBC = forecast sensus (Snowflake YTD_TON_BBC Jan–Jun, file SAP Jul–Sep). Target = budget produksi per blok dari file perencanaan 2026, didistribusi per bulan sesuai kolom DISTRIBUSI. Ach = produksi ÷ BBC atau ÷ Target; titik hijau ≥ 100%.
+
+### Ach. YTD per estate
+
+Ach. BBCAch. Target100%
+
+### Ach. per bulan
+
+Ach. BBCAch. Target100%
+
+### Produksi, BBC dan Target per bulan (ton)
+
+ProduksiBBCTarget
+
+## Pencapaian cost (Rp/Kg)
+
+EC Rp/Kg = total biaya ÷ ton produksi (tujuh komponen: Rawat, Infra, Pupuk, Panen, Transport, Umum, Penyusutan). Budget Rp/Kg = budget biaya ÷ Target produksi. Ach cost = aktual ÷ budget; **di bawah 100% berarti lebih hemat** (titik hijau). Sumber: PRS_COST.ESTATE_COST; PMY = afd A + C.
+
+### EC Rp/Kg YTD: aktual vs budget
+
+AktualBudget
+
+### EC Rp/Kg per bulan
+
+AktualBudget
+
+## Breakdown cost per komponen (Rp/Kg, YTD)
+
+### Komposisi EC Rp/Kg: aktual (A) vs budget (B)
+
+### Rp/Kg per komponen per bulan
+
+Setiap bulan dibagi dua kolom: **Act** (berwarna) dan **Bgt** (budget). Warna Act: merah = lebih mahal dari budget bulan itu, hijau = lebih hemat; makin pekat makin jauh (penuh pada selisih ±50%). Rp/Kg = biaya ÷ ton produksi (budget ÷ Target).
+
+### Rp/Ha per komponen per bulan
+
+Struktur sama dengan tabel di atas, satuan **Rp ribu per Ha TM**: biaya ÷ luas TM (Hectare Statement, bulan yang sama; budget memakai Ha TM RKT). Kolom YTD = biaya kumulatif ÷ Ha TM bulan terakhir, sama dengan tab Estate Cost, sehingga bukan rata-rata bulanan.
+
+## Pencapaian pemupukan per jenis pupuk
+
+Aktual YTD dibandingkan rekomendasi YTD (ton; 1 ton = 1.000 kg) per jenis, hanya pupuk di blok TM (sama dengan tab Estate Cost). Rekomendasi = TARGET_KG di INT_PUPUK_TARGET; PMY = afd A + C. **Aktual / rek.** di atas 100% belum tentu salah karena pupuk bisa disubstitusi antar jenis: NPK 12-12-17-2 dan NPK 15-15-6-4 diaplikasikan tanpa rekomendasi sendiri, sedangkan rekomendasi NPK terpusat di NPK 13-6-27 (kemungkinan substitusi antar NPK), jadi pembacaan yang lebih adil adalah baris **Subtotal NPK**. “n/a” = ada aplikasi tetapi tidak ada rekomendasi. **Ach 1 thn** = aktual YTD dibagi rekomendasi satu tahun penuh (Rek. 1 thn); **Ach YTD** = aktual YTD dibagi rekomendasi YTD. Latar hijau = Ach ≥ 95%, merah = Ach \< 95%. Rekomendasi 1 tahun = TARGET_KG Jan–Des, blok TM yang sama.
+
+### Aktual / rekomendasi YTD per jenis
+
+SEKSBRPMY100% rekomendasi
+
+## Produktivitas pemanen
+
+Kg/HK = output (ton × 1000) ÷ HK panen; budget dari INT_PANEN_HARIAN_TARGET. **% tidak dapat basis** = pemanen-hari yang hasilnya di bawah basis; **% kelas C** = pemanen-hari kelas C, keduanya dari total pemanen-hari. Titik hijau = Kg/HK mencapai budget, atau tidak dapat basis / kelas C ≤ 10%; titik merah di luar itu.
+
+### Kg/HK per bulan
+
+AktualBudget
+
+### % tidak dapat basis dan % kelas C per bulan
+
+Tidak dapat basisKelas Cbatas 10%
+
+## Correlation chart: Rp/Kg vs Yield
+
+Sumbu X = **yield TM** (ton dari blok berstatus TM ÷ Ha TM, rata-rata Ha TM bulanan; sama dengan definisi Yield TM di tab Estate Cost), sumbu Y = **EC Rp/Kg** (biaya 5 komponen ÷ ton total). Posisi terbaik di **kanan-bawah**. Garis **kuning = USTP** dan **hijau = TAPG** (rata-rata seluruh 28 BA) adalah anchor dari file COST REVIEW & CAPEX 2026 (data Jan–Jul). Catatan basis: (1) EC hanya **5 komponen** (Rawat, Pupuk, Panen, Transport, Umum; tanpa Infra dan Penyusutan) agar sebanding dengan anchor; (2) yield anchor memakai ton total ÷ Ha TM, jadi bila ada produksi TBM di BA lain anchor sedikit lebih tinggi dari yield TM murni; (3) biaya di ESTATE_COST tidak terpisah TM/TBM, jadi Rp/Kg tetap memakai ton total, sehingga untuk afdeling yang banyak panen TBM (SBR-B, SBR-C) Rp/Kg terlihat lebih rendah dari kondisi TM murni. Semua afdeling digambar tanpa batas luas minimum; afdeling kecil (mis. SEK-F, SEK-G, PMY-C) hasilnya sangat fluktuatif.
+
+Periode titik
+
+Skala sumbu
+
+### Per afdeling (titik kecil) dan per estate (titik besar berlingkar)
+
+## Peringkat afdeling (rank-sum)
+
+Tiap afdeling diurutkan pada empat indikator (pencapaian produksi vs budget, yield, output ton/HK, dan EC\* = EC Rp/Kg tanpa pupuk, infra, penyusutan), lalu peringkatnya dijumlahkan; makin kecil makin baik. Hanya afdeling dengan luas ≥ 100 ha dan produksi > 0. Selalu YTD dan seluruh Region (tidak mengikuti tombol cakupan). Warna baris: peringkat 1–2, 3–5, 6 ke bawah.
+
+### Peringkat afdeling vs target / budget
+
+Sama dengan tabel di atas, tetapi tiap indikator dinyatakan sebagai **achievement terhadap budget** sehingga afdeling dibandingkan dengan targetnya sendiri, bukan dengan afdeling lain secara absolut: **Ach. produksi** = ton ÷ budget ton; **Ach. yield** = (ton ÷ Ha TM) ÷ (budget ton ÷ Ha budget); **Ach. output** = (ton ÷ HK) ÷ (budget ton ÷ HK budget); **Ach. EC\*** = EC\* Rp/Kg aktual ÷ EC\* budget (EC\* = tanpa pupuk, infra, penyusutan; **di bawah 100% lebih baik**, jadi diurutkan naik). Peringkat 1 = achievement terbaik, lalu dijumlahkan; makin kecil makin baik. **Semua afdeling dimasukkan tanpa batas luas.** Indikator yang tidak bisa dihitung (mis. Ha = 0 pada SBR-E) ditulis – dan diberi peringkat terakhir. Ha memakai Ha aktual dan Ha budget ESTATE_COST, sehingga afdeling yang banyak panen TBM (SBR-B, C, E) terlihat ber-yield sangat tinggi; afdeling kecil (SEK-F, SEK-G) achievement-nya sangat fluktuatif. Baca peringkat keduanya dengan hati-hati.
+
+Cakupan
+
+Periode
+
+Ringkasan produksi
+
+## Tren produksi dan outlook s.d. Desember per afdeling
+
+Jan– = **produksi aktual**; bulan berikutnya s.d. Des = **outlook BBC** (proyeksi sensus BBC SAP bulan laporan: "Tbs Bulan Ke-2 sampai Ke-4", dijumlah per afdeling), dibandingkan dengan **Target** (budget produksi per blok dari file perencanaan, distribusi bulanan). Ach OL YTD Des = (aktual Jan–Sep + outlook BBC Okt–Des) ÷ Target setahun; Ach BBC YTD Des 26 = (aktual Jan–Sep + outlook BBC Okt–Des) ÷ (BBC Jan–Sep + outlook BBC Okt–Des), dengan asumsi Okt–Des tercapai 100% terhadap BBC; di bawah 100% = di bawah target. PMY = afd A + C. Klik baris tabel untuk menampilkan grafiknya.
+
+Grafik
+
+AktualOutlook (BBC)BBCTarget
+
+## Tren yield (t/ha) dan outlook s.d. Desember per afdeling
+
+Yield (t/ha) = **total produksi ÷ Ha TM**. Jan–Sep = aktual; Okt–Des = outlook BBC. Sesuai permintaan, pembaginya **Ha TM budget** (Hectare Statement RKT 2026, semester 1 dan 2) untuk aktual, outlook maupun target, sehingga persentase Ach yield sama dengan Ach tonase; yield aktual di sini bukan yield riil per Ha TM aktual (lihat kartu Ringkasan produksi). Ach OL YTD Des = yield setahun (aktual + outlook) ÷ yield target setahun; Ach BBC YTD Des 26 = yield (aktual Jan–Sep + outlook Okt–Des) ÷ yield BBC (BBC Jan–Sep + outlook Okt–Des); Okt–Des diasumsikan tercapai 100% terhadap BBC. Mengikuti pilihan Grafik.
+
+Grafik
+
+AktualOutlook (BBC)BBCTarget
+
+### Produksi bulanan per afdeling (ton)
+
+### Rekap per kuartal vs Target (ton)
+
+## Produksi dan produktivitas
+
+Seluruh region ditampilkan per estate dengan rincian per afdeling di bawahnya; pilih estate di atas untuk hanya melihat afdelingnya. Luas TM = tanaman menghasilkan (planted, status TM) menurut tab Hectare Statement pada akhir bulan terakhir periode (YTD dan MTD: bulan laporan; pembanding Jan–Agu: Agustus). Luas ini yang dipakai sebagai pembagi Rp/Ha dan yield TM. Ha panen = HEKTAR_PANEN per blok (blok TM dan TBM yang sudah dipanen). Luas dan ha panen YTD adalah rata-rata bulanan pada periode. **Yield (t/ha TM)** = seluruh produksi (TM + TBM) ÷ luas TM. **Yield TM (t/ha TM ONLY)** = ton dari blok TM saja ÷ luas TM (TBM tidak ikut). **Yield ha panen** = seluruh produksi ÷ ha panen. **Ach. BBC** = produksi aktual ÷ BBC. Pada periode MTD, BBC dari file sensus BBC SAP (angka resmi); pada periode YTD, BBC adalah perkiraan dari Snowflake (lihat catatan data). Output panen (t/HK) dan Ha/HK ada di tab Produktivitas pemanen. Budget yield tidak ditampilkan karena budget luas tidak dipisah TM dan TBM.
+
+## Produksi menurut status tanam
+
+Produksi (ton, TON_AKTUAL per blok) menurut status tanam blok pada bulan panennya (TBM = TBM 2 + TBM 3, dan TM; status dan tahun tanam dari Hectare Statement). “Lain” = TBM 0/1 atau blok tanpa status. Ha TM dan Ha TBM (TBM 2 + 3) = rata-rata hektar bulanan per status dari Hectare Statement pada periode (YTD: Januari sampai bulan laporan; MTD: bulan laporan), sehingga pembilang dan penyebut memakai status yang sama di tiap bulan (berbeda dengan Luas TM di tabel atas yang posisi akhir bulan); Ha panen = HEKTAR_PANEN (rata-rata bulanan pada periode YTD). **Yield ha panen** = (produksi TM + TBM) ÷ ha panen; **Yield TM ONLY** = produksi TM ÷ Ha TM; **Yield TBM** = produksi TBM ÷ Ha TBM; **Yield (t/ha TM)** = (produksi TM + TBM) ÷ Ha TM, jadi nilainya menggelembung di afdeling dengan banyak TBM. **Budget (ton)** berasal dari file perencanaan produksi per blok (folder BUDGET 2026 per AFD / PRODUKSI PER BLOK; BUDGET TON final, sebaran bulanan DISTRIBUSI Jan–Des) dijumlah per afdeling dan tahun tanam, dan dipakai juga sebagai budget produksi per afdeling di seluruh laporan (total per estate sama dengan ESTATE_COST; di SBR budget afd B, C dan D berbeda dari ESTATE_COST: B +38, C +699, D −737 ton, sehingga memakai angka file). Tahun tanam blok mengikuti Hectare Statement dan file; blok yang tidak terdaftar di Hectare Statement tampil di baris “Blok tanpa data HS”. **BBC (ton)** per tahun tanam adalah alokasi proporsional: BBC afdeling dibagi menurut porsi BBC per blok (Snowflake Jan–Jun; file Tarikan BBC SAP Jul–Sep), diskalakan agar jumlah baris = angka afdeling, jadi Ach. BBC pada baris tahun tanam indikatif. Baris “↳ progeni” memecah tiap tahun tanam menurut progeni (BIBIT di Hectare Statement); blok dengan lebih dari satu progeni dimasukkan ke progeni yang paling dominan (luas terbesar), walau pada September 2026 tidak ada blok seperti itu. Budget dan BBC tidak tersedia per progeni (kolom dikosongkan); yield dihitung dari produksi dan hektar progeni itu. Total tiap cakupan sama dengan produksi di tabel di atas. Ikut filter cakupan dan periode di atas.
+
+## Produksi per afdeling per tahun tanam per jenis bibit
+
+## Produksi per tahun tanam (total cakupan)
+
+## Pencapaian produksi terhadap Profile dan Potensi
+
+Struktur Estate – Afdeling – Tahun tanam, diukur dengan **yield (t/ha)**. **Yield aktual** = produksi ÷ Ha tertanam (rata-rata hektar bulanan TM + TBM 2/3 dari Hectare Statement pada periode). **Yield Profile** dan **Yield Potensi** = YIELD PROFILE (TON) dan POTENSI (TON) per blok dari file perencanaan produksi 2026 (folder BUDGET 2026 per AFD / PRODUKSI PER BLOK) ÷ hektar blok yang punya nilai itu (rata-rata hektar budget semester 1 dan 2), dibobot luas per afdeling dan tahun tanam; nilai setahun dikalikan proporsi bulan periode (). Ach. = yield aktual ÷ yield Profile atau Potensi periode. Pembanding hanya ada untuk blok yang ada di file dan berprofil > 0, sedangkan produksi dan hektar aktual mencakup semua blok (SBR D blok 133, 134, 700–703, 706 dan SBR C blok 090 tidak ada di file), jadi Ach. di SBR B/C terlalu tinggi. Ikut filter cakupan dan periode di atas.
+
+Cakupan
+
+Periode
+
+Rp/Kg
+
+Rp/Ha
+
+Ringkasan
+
+## Tren bulanan EC Rp/Kg vs Yield
+
+EC Rp/Kg (sumbu kiri)Yield t/Ha TM (sumbu kanan)
+
+## Estate Cost
+
+### EC total (Rp/Kg)
+
+### EC exc. fertilizer, depresiasi & rent (Rp/Kg)
+
+### EC per komponen (Rp/Kg)
+
+### EC per hektar (Rp ribu/Ha TM)
+
+BudgetActualActual di atas budget (angka % = actual ÷ budget)
+
+## Cost Rawat, Panen & Transport
+
+BudgetActualActual di atas budget (angka % = actual ÷ budget)
+
+## Komponen biaya
+
+Pilih Level biaya 1–4 untuk merinci komponen (kelompok › level 1 › level 2 › level 3, langsung dari ESTATE_COST) atau klik baris bertanda ▸/▾ untuk membuka/menutup; rincian tersedia untuk YTD dan MTD. Pilih estate untuk melihat komponen biayanya (biaya dan budget langsung dari ESTATE_COST); pilihan ini sama dengan Cakupan di atas. Biaya dalam Rp juta; Rp/Kg = seluruh biaya / seluruh ton; Rp/Ha = seluruh biaya / luas TM (HA_ACTUAL).
+
+Estate
+
+Level biaya
+
+## Tren bulanan EC Rp/Ha TM vs Yield
+
+EC Rp ribu/Ha TM (sumbu kiri)Yield t/Ha TM (sumbu kanan)
+
+## Estate cost YTD per estate per afdeling
+
+**Total EC (Rp/Kg)** = seluruh biaya (7 kategori: upkeep, infra, pemupukan, panen, transport, OVH, penyusutan) ÷ seluruh produksi; TGT = total budget ÷ budget ton. Upkeep, infrastruktur dan pemupukan dalam Rp ribu per Ha TM (seluruh biaya dibagi luas TM); panen dan transport dalam Rp/Kg (seluruh biaya dibagi seluruh produksi). ACT = aktual, TGT = budget, ACHV = ACT ÷ TGT. ACHV di atas 100% berarti biaya melampaui budget dan diberi warna merah. Biaya dan budget per afdeling langsung dari tabel ESTATE_COST. Mengikuti pilihan periode di atas.
+
+## EC Rp/Kg
+
+Dua klasifikasi Rp/Kg untuk cakupan terpilih
+
+## EC Rp/Kg aktual vs budget
+
+AktualBudget
+
+## Tren bulanan EC total Rp/Kg
+
+SEKSBRPMY
+
+Tabel bulanan (EC total Rp/Kg, ton)
+
+## EC Rp/Ha
+
+Lima klasifikasi Rp/Ha untuk cakupan terpilih
+
+## Langsir TBS
+
+Biaya langsir TBS tercatat di COA “LANGSIR TBS” dan sudah termasuk dalam biaya transport pada EC. Analisis double handling (HK langsir dan KM) belum dibuat pada versi ini.
+
+## Belum tersedia dan catatan data
+
+**Belum tersedia di Snowflake:** VRA Rp/KM per unit, KM langsir, dan perbandingan RKB vs PDB. Bagian ini tidak diisi agar tidak ada angka karangan.
+
+- **Pemayung (2131):** biaya dan budget BA dibukukan di kode lama BA 2122 dan digabung ke 2131. Pemetaan 2122→2131 sudah dikonfirmasi pemilik laporan.
+- **Sumber biaya dan budget:** seluruh biaya aktual, budget, ton produksi, dan ton budget dibaca dari tabel PRD_DB_PRESENTATION.PRS_COST.ESTATE_COST per bulan, BA dan afdeling, tanpa alokasi dari BA dan tanpa file budget terpisah. Kolom ton dan hektar di tabel itu berulang di setiap baris biaya, jadi diambil satu nilai per bulan-afdeling (bukan dijumlah). Kategori: Perawatan = upkeep, Infra, Pemupukan, Panen, Transport Panen, Biaya Umum + Sewa AMP = OVH, Penyusutan. Hanya ha panen, HK, ton blok TM (Yield TM), kg pupuk dan jumlah pokok yang tetap dari layer integrasi karena bukan data biaya.
+- **PMY (2131):** biaya dan budget BA dibukukan di kode lama BA 2122 dan digabung ke 2131. PMY dibaca sebagai satu afdeling bernama “PMY” = afd A + afd C. Di ESTATE_COST seluruh budget BA berada di afd A dan C (afd B tanpa budget biaya), sehingga PMY memuat seluruh budget BA. Afd B tetap dikeluarkan sesuai arahan pemilik laporan; biaya aktualnya hanya ±Rp 5 juta.
+- **SBR:** luas afd B, C, D bergeser antar bulan (mis. C naik, D turun pada bulan terakhir), kemungkinan penataan ulang afdeling. Rp/Ha dan yield YTD per afdeling memakai rata-rata luas sehingga bisa bias.
+- **Budget OVH:** hanya SOURCE_BUDGET = ESTATE_COST yang dipakai; OPEX_BIAYA_UMUM sengaja tidak ditambahkan karena menggandakan Biaya Umum.
+- **BBC:** Jul–Sep per afdeling dijumlah dari file “Tarikan BBC Periode Jan - Dec 2026_Detail Blok” (sensus BBC SAP, kolom Tbs Bulan Ke-1; file hanya memuat tiga periode ini). Total September cocok persis dengan laporan pemilik (SEK 4.997, SBR 3.817, PMY 373 ton). Jan–Jun tidak ada di file: dipakai kumulatif Snowflake (YTD_TON_BBC baris terakhir tiap blok), lalu per estate diskalakan agar total YTD Sep sama dengan laporan pemilik (SEK 42.557, SBR 31.452, PMY 3.512). Karena itu BBC YTD dan YTD Jan–Agu per estate cocok dengan pemilik, tetapi **pembagian Jan–Jun antar afdeling adalah perkiraan** (faktor skala 1,04–1,08). Kolom harian TON_BBC tidak boleh dijumlahkan.
+- **SBR afd B, C, E didominasi TBM:** luas TM-nya kecil (B ±60 ha, C ±100 ha, E 0) tetapi ha panen 120–410 ha karena blok TBM sudah dipanen. Karena itu Yield TM di sana dihitung dari ton blok TM saja dan angkanya kecil-basis; baca bersama yield ha panen.
+- **Rp/Ha memakai seluruh biaya:** pembagi Rp/Ha adalah luas TM dari Hectare Statement (INT_HEKTAR_BLOK, posisi akhir bulan terakhir periode, bukan rata-rata YTD). Budget per Ha dibagi luas TM budget per afdeling dari file Hectare Statement RKT 2026 (folder “EC PROJECT CONTOH/HS 2026”, kolom TM; semester 1 untuk periode sampai Juni, semester 2 setelahnya). ESTATE_COST tidak punya kolom status tanaman, sehingga pembilangnya adalah seluruh biaya afdeling, termasuk biaya blok TBM. Akibatnya Rp/Ha lebih tinggi daripada versi sebelumnya (yang menurunkan porsi TM dari data blok) di afdeling dengan banyak TBM, terutama SBR B, C dan E. Rp/Kg tidak terpengaruh. Budget memakai definisi yang sama (seluruh budget dibagi luas budget).
+- **Afdeling tanpa luas atau produksi** (SEK-E, SBR-H/I/J) tidak ditampilkan karena seluruh nilainya nol.
+
+Periode
+
+Cakupan
+
+## Region Sumatera
+
+## Penyebab over budget Perawatan
+
+### 10 aktivitas penyumbang over budget terbesar
+
+## Perawatan non-infra
+
+## Perawatan infra
+
+## Perawatan per estate dan afdeling
+
+**Sumber:** seluruh angka biaya, budget (RKT), Ha TM dan output ton dari ESTATE_COST (RP_ACTUAL, RP_BUDGET, HA_ACTUAL, HA_BUDGET, TON_ACTUAL, TON_BUDGET). Rp dalam juta; Rp/Ha dalam ribu Rp per Ha TM. Output ton dan Ha TM tidak dipecah per Level 1, sehingga ditampilkan sebagai konteks di kartu ringkasan; tabel per afdeling memuat Ha TM.
+
+**HK/Ha (tabel non-infra):** Aktual = HK bekerja ÷ Ha dikerjakan; Norma = Σ(Ha dikerjakan × norma HK/Ha) ÷ Σ Ha dikerjakan, dengan norma dari file BUDGET GUIDELINES 2025 (sheet VIII - TM, baris datar/mineral; norma bukit tidak dipakai). Varian = aktual − norma (kurung = lebih hemat HK dari norma; merah = lebih boros). Ha dan HK dari INT_RAWAT_HARIAN, hanya aktivitas TM berstatuan Ha yang punya norma; Level 1 lain (Penjarangan, Peralatan, Sisip, Supervisi, Transport, Tunasan) tampil "–". Ha dikerjakan menghitung semua rotasi, sehingga norma sudah dikalikan rotasi aktualnya. Norma memakai Budget Guidelines 2025 (belum ada versi 2026), pemetaan aktivitas ke norma bersifat manual dan perlu dikonfirmasi tim agronomi; HK tanpa catatan Ha ikut menaikkan HK/Ha aktual. Varian Ha RKT tidak lagi ditampilkan karena cakupan RKT tidak merata antar afdeling.
+
+Ha TM = luas bulan terakhir (YTD memakai luas Sep). Rp/Ha periode bulanan adalah biaya satu bulan per Ha. Ach = aktual ÷ budget; di bawah 100% = hemat , di atas 100% = melebihi budget . Level 1 tanpa budget tampil "–". SBR E tidak punya Ha TM; Rp/Ha-nya tidak dihitung tetapi biayanya ikut total estate.
+
+Cakupan
+
+## Resume pemupukan YTD
+
+### 1 · Cost pemupukan per Ha TM (aktual vs budget)
+
+### 2 · Dosis kg per pokok TM (aktual YTD vs rekomendasi 1 tahun)
+
+### 3 · Cost element pemupukan
+
+AktualBudget
+
+Tabel 1 dan 2 selalu menampilkan Region dan tiap estate; grafik dan tabel elemen mengikuti filter Cakupan. Cost = biaya GROUP_LEVEL BIAYA PEMUPUKAN di ESTATE_COST (bahan, upah, transport; semua jenis termasuk EFB/POME), sama dengan komponen Pemupukan di tab Estate Cost. Rp/Ha = biaya ÷ luas TM (Hectare Statement), budget ÷ luas TM budget. Dosis hanya blok TM: aktual YTD ÷ rata-rata pokok TM YTD; rekomendasi 1 tahun ÷ pokok TM rencana setahun. Elemen biaya dikelompokkan dari akhiran LEVEL_3 (Materials, Labors = HK/upah, Transports); kontrak, alat, dan lainnya bernilai nol dan disembunyikan. Biaya pupuk tidak dipecah per kg sehingga Rp/kg pupuk tidak dihitung.
+
+## Pemupukan blok TM: rekomendasi 1 tahun vs aktual Jan–Sep per afdeling (2026)
+
+Afdeling
+
+### Dosis pupuk per Ha TM dan per pokok TM (aktual Jan–Sep vs rekomendasi 1 tahun 2026)
+
+Afdeling
+
+## Catatan data
+
+- **Rekomendasi pupuk** = TARGET_KG pada tabel target pupuk. Substitusi jenis NPK (12-12-17 vs 13-6-27) terlihat sebagai selisih besar per jenis; baca subtotal NPK. Slow release tidak memiliki kg.
+- **Biaya pupuk** (Rp, budget, Rp/Ha) ada di tab Estate Cost, tabel Komponen biaya dan Estate cost per afdeling; tab ini memuat volume (kg) dan dosis.
+
+Cakupan
+
+Tampilan bulanan
+
+Satuan
+
+## Region Sumatera
+
+## Gaji & Premi Panen & Transport
+
+### Ringkasan gaji vs premi (YTD)
+
+### Per akun, per bulan
+
+**Definisi:** seluruh angka dari ESTATE_COST per akun (COA) kelompok Biaya Panen dan Transport Panen. **Gaji panen** = akun 5101030101 Harvesting - Labors (upah pemanen). **Premi** = akun insentif: 5101030201 Harvesting Incentive dan 5101030301 LF Collection Incentive (brondolan). **Supervisi & insentif panen** = akun 5101030701, tidak bisa dipisah antara gaji supervisi dan insentif sehingga ditampilkan sendiri. **HK transport panen** = akun Labors Transport Panen (loading, angkut internal, langsir). Akun non-HK (alat, material, kendaraan, kontrak) ditampilkan sebagai baris pelengkap dan tidak masuk subtotal gaji dan premi. **Perhatian:** nama kelompok di ESTATE_COST adalah “Gaji Panen & Premi”; premi basis (lebih basis) yang tidak diposting ke akun insentif bisa saja ikut tercatat di akun Harvesting - Labors, sehingga porsi premi di sini adalah batas bawah. Data tidak dipecah per karyawan; tabel INT_SALARY_NON_STAFF tidak memuat estate Sumatera. Budget = RP_BUDGET akun yang sama. **Rp/Kg** = biaya akun ÷ ton TBS produksi (aktual dibagi ton aktual, budget dibagi ton budget, keduanya dari ESTATE_COST, seluruh afdeling dalam cakupan); pilih satuan Rp/Kg untuk grafik dan kolom bulanan. Rp/Kg setiap elemen dijumlahkan menjadi Rp/Kg subtotal dan total. Bulan terakhir bisa belum lengkap.
+
+Cakupan
+
+Overhead Cost
+
+## Overhead Cost per estate
+
+### Rp ribu/Ha: aktual vs budget
+
+### Rp juta: aktual vs budget
+
+AktualBudget
+
+## Overhead Cost TM per kelompok dan akun (COA)
+
+Dua tingkat: kelompok (Level 3) › akun (COA). Klik baris kelompok untuk membuka akunnya.
+
+## Aktual vs budget per kelompok (Rp juta)
+
+AktualBudget
+
+### Komposisi 5 kelompok terbesar
+
+Aktual
+
+Budget
+
+## Catatan kritis
+
+Cakupan
+
+Tampilan
+
+## Report Head Count Staff
+
+Head Count MPE Staff
+
+## Rasio Staff per Ha tanam (TM + TBM)
+
+## Perbandingan antar estate per jabatan
+
+Jabatan di baris, estate di kolom. MPP = MPP 2026; MPE = MPE existing; Varian = MPE existing − MPP (negatif = kekurangan, positif = kelebihan); Plan = MPE plan. Klik ▸ pada jabatan untuk membuka daftar nama (existing; "Rencana" = nama pada kolom plan bila berbeda). Nama VACANT/CLOSED ditampilkan miring. Tanda ⚠ = jumlah nama unik di sheet sumber tidak sama dengan angka MPE existing (mis. satu orang memegang dua AFD). Mengikuti pilihan Tampilan di atas. Pada tampilan "Hanya yang ada selisih", kolom menampilkan MPE per estate dan Selisih = MPE Sekernan & Batang Hari − MPE Brahma Sawit & Karet (positif = Sekernan lebih banyak; RO Sumatera tidak ikut).
+
+## MPP vs MPE staff per jabatan
+
+**Definisi:** **MPP 2026** = kebutuhan staff; **MPE existing** = staff terisi saat ini; **MPE plan** = rencana MPE; **Varian existing** = MPE existing − MPP dan **Varian plan** = MPE plan − MPP (negatif = kekurangan, positif = kelebihan). Sumber: . Kelompok kolom mengikuti judul di sheet: "BBB - Sekernan & Batang Hari", "BBB - Brahma Sawit & Brahma Karet" dan "RO - Sumatera" (bukan per estate SEK/SBR/PMY). Hanya jabatan staff pada sheet tersebut, tanpa IN/OUT dan FPTK karena tidak ada di sheet ini. Nama karyawan hanya tampil di daftar nama yang dibuka.
+
+## Varian MPE existing terhadap MPP
+
+Hanya jabatan yang berbeda dari MPP; kiri = kekurangan, kanan = kelebihan.
+
+Periode
+
+Tampilan
+
+## Report Head Count Non-Staff
+
+Head Count Non-Staff
+
+### Ha tanam (TM + TBM) dan MPE per Ha
+
+## Rasio tenaga kerja langsung dan umum per Ha tanam
+
+### Kebalikannya: Ha tanam per orang (Ha/Org)
+
+Pemetaan jabatan ke kategori
+
+## MPE per jabatan: Sekernan (2121) vs Brahma Sawit (2124), dengan Pemayung (2131)
+
+## Selisih MPE terbesar per jabatan
+
+20 jabatan dengan selisih terbesar (Sekernan − Brahma Sawit saja, tanpa Karet). Kiri = Brahma lebih banyak, kanan = Sekernan lebih banyak.
+
+## MPE per status karyawan
+
+KT = Karyawan Tetap, KK = Kontrak, KP = Probation. Basis NIK aktif payroll akhir September 2026 (INT_MASTER_KARYAWAN_NON_STAFF_BULANAN), sama dengan kartu di atas. Karyawan Lepas (KL) tidak ada di master payroll ini, sehingga tidak dihitung (di INT_MPE sebelumnya KL = Sekernan 399 dan Karet 515, tanpa perubahan sejak Des 2025).
+
+## Tren MPE bulanan (NIK aktif payroll akhir bulan)
+
+Periode
+
+Tampilan
+
+## Report Selisih Biaya Tenaga Kerja (Labour) di Biaya Umum (COA 5201010101)
+
+## Biaya tenaga kerja per jabatan: Sekernan (2121) vs Brahma Sawit (2124)
+
+## Selisih biaya terbesar per jabatan
+
+15 jabatan dengan selisih biaya terbesar (Sekernan − Brahma Sawit saja, tanpa Karet), Rp juta. Kiri = Brahma Sawit lebih besar, kanan = Sekernan lebih besar.
+
+Estate
+
+## Analisa selisih Rp/Kg YTD
+
+## Penyebab selisih Rp/Kg terhadap budget
+
+Efek produksi: biaya tetap budget dibagi ton aktual yang lebih kecil/besar dari target. Efek belanja: biaya aktual dikurangi budget, dibagi ton aktual. Panen dan transport dianggap biaya variabel (budget disesuaikan dengan ton), sehingga efeknya murni selisih tarif per Kg. Jumlah semua efek = selisih Rp/Kg.
+
+## Kontribusi per estate terhadap selisih Region Sumatera
+
+Kontribusi = biaya aktual estate ÷ ton aktual Region − budget estate ÷ ton budget Region (Rp/Kg); jumlah ketiga estate sama dengan selisih Region. Efek produksi dan belanja dihitung per estate pada ton estate sendiri, sehingga tidak persis menjumlah ke Region (ada efek bauran antar estate).
+
+## Per afdeling
+
+Afdeling dengan ton sangat kecil (misalnya afd F dan G Sekernan) menghasilkan Rp/Kg yang tidak bermakna; baca bersama kolom ton.
+
+## Per bulan
+
+Bulan dengan Rp/Kg di atas budget biasanya bulan dengan capaian ton rendah; September mungkin belum memuat seluruh biaya (lihat catatan data di tab Estate Cost).
+
+## Simulasi pupuk dan produksi
+
+Pengandaian atas YTD . Rp/Kg simulasi = (biaya tetap aktual + pupuk simulasi + panen dan transport pada tarif per Kg aktual) ÷ ton simulasi; Rp/Kg target dibangun dari budget dengan cara sama. Pilih skenario atau geser sendiri.
+
+Skenario
+
+## Simulasi YTD Des : Rp/Kg dan Rp/Ha TM
+
+Estate
+
+Skenario produksi
+
+Skenario 3, pupuk%
+
+### Rincian komponen biaya
+
+Tampilan
+
+Capex 2026
+
+## Ringkasan per estate (Rp juta)
+
+## Plafond, terpakai dan sisa (Rp juta) · klik baris untuk membuka rincian
+
+Nama kelompok akun diambil dari isi pos di tiap akun (kode akun 12070102xx dan seterusnya), bukan dari nama COA di file. Sisa merah = terpakai melebihi plafond. Baris transaksi hanya menampilkan nilai terpakai.
+
+## Per bulan dan kuartal 2026 (Rp juta)
+
+Plafond (jadwal bulan plafond)Terpakai (PR/SPR per bulan transaksi)
+
+Plafond dijadwalkan per bulan plafond, terpakai dicatat per bulan transaksi PR/SPR, jadi selisih per bulan atau kuartal hanya indikatif. PR yang dibuat Desember 2025 tetapi tercatat di Januari 2026 ikut kolom Januari.
+
+## Catatan kritis
+
+Lihat
+
+Estate
+
+Rincian
+
+Budget 2027
+
+## Cost YTD Sep 2026, taksasi Okt–Des, outlook 2026, budget 2026 dan Final Budget 2027
+
+## Rekap Region Sumatera: perbandingan antar estate (Rp/Kg dan Rp ribu/Ha)
+
+## Cek silang dengan ESTATE_COST
+
+Cakupan
+
+Periode
+
+Tampil sampai level
+
+## Cost Element
+
+## Cost Element
+
+**Struktur:** empat tingkat sesuai ESTATE_COST: **Level 1** = GROUP_LEVEL (Biaya Perawatan, Infra, Pemupukan, Panen, Transport Panen, Umum, Sewa AMP, Penyusutan), **Level 2** = LEVEL_1, **Level 3** = LEVEL_2, **Level 4** = LEVEL_3 (elemen biaya per aktivitas: Labors, Materials, Tools, Transports, Contracts). Klik baris untuk membuka atau menutup. Rp juta; Rp/Kg = biaya ÷ ton TBS produksi cakupan dan periode yang sama (aktual ÷ ton aktual, budget ÷ ton budget dari ESTATE_COST). Varian = aktual − budget (kurung = di bawah budget, merah = melebihi). Ach = aktual ÷ budget; di bawah 100% berarti hemat. PMY = BA 2131 + 2122 (afd B dikeluarkan). Hanya baris dengan nilai aktual atau budget YTD tidak nol yang ditampilkan; urutan baris mengikuti nama. Budget Umum, Sewa AMP, dan Penyusutan berasal dari alokasi di ESTATE_COST.
+
+Periode
+
+## Region Sumatera
+
+## Tabel per estate dan afdeling
+
+**Indikator:** Kehadiran di bawah 90% 90–93% di atas 93%. Titik merah juga pada tidak dapat basis di atas 10% dan kelas C di atas 10%.
+
+Kg/HK = output (ton ×1000) ÷ HK panen. Basis/kelas dihitung per pemanen-hari (satu baris = satu pemanen pada satu hari). Persentase kehadiran = hari hadir ÷ hari kerja efektif pemanen.
+
+## Kg/HK per bulan: aktual vs budget, dengan ton produksi dan Ha/HK
+
+Kg/HK aktual (sumbu kiri)Kg/HK budget (sumbu kiri)Ton aktual (batang, sumbu kanan)Ton budget (sumbu kanan)
+
+## Definisi dan catatan data
+
+- **Tidak dapat basis**: pemanen-hari dengan flag TIDAK_BASIS = 1 (hasil di bawah basis). **Basis**: mencapai basis tetapi belum mencapai target. **Lebih basis**: mencapai atau melewati target (TIDAK_TARGET = 0). Ketiganya saling lepas dan berjumlah 100%.
+- **Kelas A, B, C**: flag kelas pemanen per pemanen-hari dari INT_BASIS_TARGET; penyebut sama dengan jumlah pemanen-hari.
+- **Output dan budget Kg/HK**: ton aktual dan ton budget dari ESTATE_COST; HK aktual dari pencapaian produksi panen; HK budget dari INT_HK_BUDGET. Ha/HK = Ha panen (jumlah harian) ÷ HK aktual.
+- **PMY** = afdeling A dan C (BA 2131/2122 digabung; afdeling B tidak memanen). PMY tidak punya budget basis berbeda dari target, sehingga semua pemanen-hari yang lolos basis masuk "lebih basis" dan kolom "basis" kosong. Absensi pemanen PMY tidak tercatat di INT_ABSENSI_HARIAN (hanya mandor panen), sehingga % kehadiran PMY tidak tersedia.
+- Afdeling tanpa panen (SEK E dan I, SBR H, I, J, K) tidak ditampilkan. SEK G tidak punya absensi pemanen. Afdeling dengan TM sangat kecil (SEK F, PMY C) angkanya fluktuatif.
+- HK aktual dapat lebih besar dari jumlah pemanen-hari karena HK pemanen gandeng terhitung di produksi; Kg/HK memakai HK produksi.
