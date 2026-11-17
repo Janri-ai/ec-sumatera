@@ -145,8 +145,19 @@ Cost Level 1 BIAYA PERAWATAN (11 item) dan BIAYA INFRA (9 item) dari ESTATE_COST
 - Varian existing = MPE existing - MPP; varian plan = plan - MPP. 'plasma' -> 'KEMITRAAN'. Tanpa IN/OUT/FPTK. Tanda ⚠ = jumlah nama unik != MPE existing.
 
 ## Head Count Non-Staff (tab HN, setelah Head Count Staff)
-- Sumber Snowflake `PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MPE` (snapshot akhir bulan, LOCATION = kode BA). Sekernan = 2121; Brahma Sawit & Karet = 2124 + 2123. Query: `q_hcns.sql` (dua query: detail jabatan bulan tampil, status karyawan Des-tahun lalu s/d bulan berjalan). Simpan hasil ke `work/hcns.txt` (format ada di file contoh `hcns_data.txt`), lalu `python3 hcns_load.py work/hcns.txt work/r_hcns.json` (token __HN__ di build.py). Validasi: total detail = total status per bulan.
-- JOB_CODE KOSONG di semua baris INT_MPE dan INT_MASTER_KARYAWAN_NON_STAFF_BULANAN: jabatan = JOB_DESCRIPTION, dikelompokkan JOB_TYPE (HV, WD, OT, TP, WS, PD, NR, LC...). Tidak ada MPP/target non-staff di Snowflake: hanya MPE.
-- INT_MPE tidak berisi staff untuk BA ini (MGR_LEVEL hanya NS1-NS3 atau kosong). INT_MASTER_KARYAWAN_NON_STAFF_BULANAN adalah subset (~1.830 orang, hanya bulanan) jadi tidak dipakai.
-- BULAN setelah bulan berjalan di INT_MPE hanyalah salinan proyeksi (jumlah datar), jangan dipakai. Jumlah status KL (lepas) tidak berubah sejak Des 2025 (2121: 399, 2123: 515, 2124: 0): kemungkinan tidak diperbarui, konfirmasi ke HR.
-- Hasil Sep 2026: Sekernan 3.805; Brahma Sawit 1.286 + Karet 1.599 = 2.885; selisih +920. Okt (berjalan): 3.813 vs 2.910, +903.
+- BASIS RESMI (keputusan user 2026-10-28): semua MPE non-staff = NIK AKTIF PAYROLL akhir bulan laporan, bukan INT_MPE. Sumber `PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MASTER_KARYAWAN_NON_STAFF_BULANAN`, LOCATION = kode BA (2121 Sekernan; 2124 + 2123 Brahma Sawit & Karet), aktif = TANGGAL_RESIGN kosong atau > akhir bulan, NIK_SAP unik. Query: `q_hcns.sql` -> work/hcns.txt (#detail, #kelas, #ha, #nik) -> `python3 hcns_load.py work/hcns.txt work/r_hcns.json` (token __HN__). Validasi: total detail = total kelas = #nik.
+- Sep 2026: SEK 802, SBR 667, Karet 355 (Brahma S&K 1.022), PMY 50 (kolom ke-4 di tab HN, tab HK NS to OH dan rasio; Ha PMY = BA 2131 penuh, 253,6 TM, termasuk afd B yang di EC dikeluarkan). Angka INT_MPE lama (3.805/1.286/1.599) TIDAK dipakai lagi; selisihnya karena KL dan karyawan non-payroll. Kelas hanya KT/KK/KP. Hanya bulan laporan (toggle bulan berjalan dihapus); tren Des-bulan laporan.
+- JOB_CODE kosong: jabatan = JOB_DESCRIPTION, dikelompokkan JOB_TYPE. Tidak ada MPP/target non-staff di Snowflake.
+- Tab ini juga memuat rasio Org/Ha dan Ha/Org (Ha tanam = TM + TBM 3, INT_HEKTAR_BLOK) per kategori (panen/rawat/pupuk/infra vs umum; pemetaan kategori buatan kami). Staff (sheet FIX Region Kalteng & Sumatera) BUKAN payroll dan tidak bisa dipisah per estate; rasio staff lewat r_hr.json (hr_load.py).
+
+## HK NS to OH: Pemayung
+q_oj.sql sudah memuat KODE_BA 2131 (17 jabatan, YTD Rp 957 jt, 39 orang); ditampilkan sebagai 3 kolom di kanan, tidak ikut selisih Sekernan - Brahma Sawit.
+
+
+## Update YTD Oktober 2026 (17 Nov 2026)
+- Semua tab berbasis Snowflake ditarik ulang untuk n=10 (folder w10): ESTATE_COST (main, tm, mon, pup, pok, lang, hs, sumcost, corr, akp, pan, ce), gaji, pupelem, rawat (biaya, output, norma), overhead, OJ, HN, an, sd.
+- Loader berbasis berkas teks di folder kerja (tanpa angka tertanam): ce_load (ce_h.txt, ce_v.txt, pan.txt, r_main.json), gaji_load (gaji.txt, pan.txt), rawat_load (rawat.txt), rawout_load (rawout.txt), rawnorm_load (rawnorm.txt), hcns_load (hcns.txt), oj_load (oj.txt, oj_hk.txt), overhead_load (oh_ytd.txt + r_amp/r_ampb/coa_map/r_ce), an_load (ec_mon.txt = r_sumcost/1e3 + ton dari pan.txt), sd_load (sd_bud.json = INT_COST_BUDGET SOURCE_BUDGET='ESTATE_COST', kolom 4 = budget bulan sisa n+1..Des).
+- Kontrol Okt: Overhead = ESTATE_COST BIAYA UMUM YTD (aktual 34.416,4 / 14.245,8 / 3.809,4 jt; budget 33.957,4 / 13.716,1 / 4.716,5 jt); OJ JT 10.231,0 / 5.029,3 / 1.988,9 (2123) / 1.069,2; HN "validasi beda: 0".
+- Jebakan hasil Snowflake: tampilan tool memotong output; cek jumlah baris dan total kontrol (mis. satu baris OJ pertama sempat hilang saat disalin).
+- Masih posisi September (file sumber belum ada untuk Oktober): Tarikan BBC SAP (BBC Jul–Okt per afd memakai Snowflake apa adanya; outlook Nov–Des memakai sensus periode September, di-set month=10 di r_bbcout.json), Capex (r_capex.json), MPP/MPE staff (r_hc/r_hr), KK_OL Budget 2027 (tab Budget 2027), anchor pbix (r_anchor.json). Panel "penyebab selisih Perawatan" (r_rawcause.json) tidak ditarik ulang karena q_rawat_cause.sql tidak ada di Project; build tetap jalan tanpa panel itu.
+- Template: label Sep -> Okt, rumus OL biaya lain = YTD x 12/m (D.m), "Okt–Des" -> "Nov–Des", HN default ke bulan terakhir (ML "10":"Okt 2026"). Blok KK_OL tetap berlabel Sep.

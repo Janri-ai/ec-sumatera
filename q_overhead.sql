@@ -1,7 +1,7 @@
 -- Overhead Cost TM YTD (tab Overhead Cost). Hasil -> work/oh_ytd.txt (BA|COA|aktual ribu|budget ribu), lalu overhead_load.py
 -- Ganti rentang bulan (BULAN_POSTING / BULAN = awal bulan) sesuai YTD. Output ditulis ulang per baris "BA|COA|ACT_RIBU|BGT_RIBU".
 -- Pengecualian COA (dikelompokkan di luar BIAYA UMUM di ESTATE_COST): 52010119% (depresiasi), 5201010598 (sewa AMP), 5201012001.
--- Kontrol: SUM harus = ESTATE_COST LEVEL_1='BIAYA UMUM' YTD (aktual 31.052,6 / 12.772,2 / 3.254,9 jt; budget 30.602,6 / 12.449,6 / 4.244,9 jt untuk 2121/2124/2131).
+-- Kontrol: SUM harus = ESTATE_COST LEVEL_1='BIAYA UMUM' YTD (YTD Okt 2026: aktual 34.416,4 / 14.245,8 / 3.809,4 jt; budget 33.957,4 / 13.716,1 / 4.716,5 jt untuk 2121/2124/2131).
 WITH A AS (SELECT DECODE(KODE_BA,'2122','2131',KODE_BA) BA, COA, SUM(COST_ACTUAL) V
   FROM PRD_DB_PRESENTATION.PRS_COST.OPEX_BIAYA_UMUM
   WHERE KODE_BA IN ('2121','2124','2131','2122') AND MATURITY_STATUS='TM' AND BULAN_POSTING BETWEEN '2026-01-01' AND '2026-09-01'

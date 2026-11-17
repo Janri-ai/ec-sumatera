@@ -1,13 +1,22 @@
--- Head Count Non-Staff (MPE) Sekernan 2121 vs Brahma Sawit 2124 + Karet 2123. Sumber: INT_KARYAWAN.INT_MPE (JOB_CODE kosong di semua baris -> pakai JOB_DESCRIPTION + JOB_TYPE).
--- BULAN > bulan berjalan di INT_MPE hanya salinan proyeksi (jumlah datar) -> jangan dipakai. LOCATION = kode BA.
--- 1) detail jabatan, bulan yang ditampilkan (contoh Sep dan Okt 2026) -> simpan ke work/hcns.txt di bawah baris '#detail'
-SELECT TO_CHAR(BULAN,'MM')||'|'||COALESCE(JOB_TYPE,'')||'|'||REPLACE(TRIM(JOB_DESCRIPTION),'|','/')||'|'||COUNT_IF(LOCATION='2121')||'|'||COUNT_IF(LOCATION='2124')||'|'||COUNT_IF(LOCATION='2123') AS line
-FROM PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MPE WHERE LOCATION IN ('2121','2123','2124') AND BULAN IN ('2026-09-30','2026-10-31')
-GROUP BY BULAN, JOB_TYPE, TRIM(JOB_DESCRIPTION) ORDER BY BULAN, JOB_TYPE, TRIM(JOB_DESCRIPTION);
--- 2) status karyawan per bulan (Des tahun lalu s/d bulan berjalan) -> di bawah baris '#kelas'
-SELECT TO_CHAR(BULAN,'MM')||'|'||EMPL_CLASS||'|'||COUNT_IF(LOCATION='2121')||'|'||COUNT_IF(LOCATION='2124')||'|'||COUNT_IF(LOCATION='2123') AS line
-FROM PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MPE WHERE LOCATION IN ('2121','2123','2124') AND BULAN BETWEEN '2025-12-31' AND '2026-10-31'
+-- Head Count Non-Staff (MPE) Sekernan 2121 vs Brahma Sawit 2124 + Karet 2123. BASIS: NIK AKTIF PAYROLL akhir bulan (keputusan user 2026-10-28), bukan INT_MPE.
+-- Sumber: PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MASTER_KARYAWAN_NON_STAFF_BULANAN; NIK_SAP unik per LOCATION (kode BA); aktif = TANGGAL_RESIGN kosong atau > akhir bulan.
+-- JOB_CODE kosong di semua baris -> pakai JOB_DESCRIPTION + JOB_TYPE. Kelas karyawan hanya KT, KK, KP (tidak ada KL di payroll).
+-- Simpan hasil ke work/hcns.txt dengan format: '#detail' (bln|tipe|jabatan|2121|2124|2123), '#kelas' (bln|kelas|2121|2124|2123), '#ha' (dari INT_HEKTAR_BLOK), '#nik' (total per BA). Lalu: python3 hcns_load.py work/hcns.txt work/r_hcns.json
+-- Pemayung (2131) kolom ke-4 di semua keluaran (format '#detail' bln|tipe|jabatan|2121|2124|2123|2131, '#kelas' bln|kelas|2121|2124|2123|2131, '#nik' dan '#ha' juga ada baris 2131). Tambahkan COUNT(DISTINCT IFF(LOCATION='2131',NIK_SAP,NULL)) dan LOCATION IN (...,'2131').
+-- 1) detail jabatan, bulan laporan
+SELECT TO_CHAR(BULAN,'MM')||'|'||COALESCE(JOB_TYPE,'')||'|'||REPLACE(TRIM(COALESCE(JOB_DESCRIPTION,'')),'|','/')||'|'||COUNT(DISTINCT IFF(LOCATION='2121',NIK_SAP,NULL))||'|'||COUNT(DISTINCT IFF(LOCATION='2124',NIK_SAP,NULL))||'|'||COUNT(DISTINCT IFF(LOCATION='2123',NIK_SAP,NULL))||'|'||COUNT(DISTINCT IFF(LOCATION='2131',NIK_SAP,NULL)) AS line
+FROM PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MASTER_KARYAWAN_NON_STAFF_BULANAN
+WHERE BULAN IN ('2026-09-30','2026-10-31') AND LOCATION IN ('2121','2123','2124','2131') AND (TANGGAL_RESIGN IS NULL OR TANGGAL_RESIGN > '2026-10-31')
+GROUP BY JOB_TYPE, TRIM(COALESCE(JOB_DESCRIPTION,'')) ORDER BY 1;
+-- 2) status karyawan per bulan (Des tahun lalu s/d bulan laporan)
+SELECT TO_CHAR(BULAN,'MM')||'|'||COALESCE(EMPL_CLASS,'')||'|'||COUNT(DISTINCT IFF(LOCATION='2121',NIK_SAP,NULL))||'|'||COUNT(DISTINCT IFF(LOCATION='2124',NIK_SAP,NULL))||'|'||COUNT(DISTINCT IFF(LOCATION='2123',NIK_SAP,NULL))||'|'||COUNT(DISTINCT IFF(LOCATION='2131',NIK_SAP,NULL)) AS line
+FROM PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MASTER_KARYAWAN_NON_STAFF_BULANAN
+WHERE BULAN BETWEEN '2025-12-31' AND '2026-10-31' AND LOCATION IN ('2121','2123','2124','2131') AND (TANGGAL_RESIGN IS NULL OR TANGGAL_RESIGN > LAST_DAY(BULAN))
 GROUP BY BULAN, EMPL_CLASS ORDER BY BULAN, EMPL_CLASS;
--- 3) Ha tanam per BA (TM + TBM), bulan realisasi terakhir (Sep 2026). Oktober = proyeksi (HEKTAR_PANEN kosong, TM Sekernan loncat 2.744 -> 3.194), jangan dipakai.
+-- 3) Ha tanam per BA (TM + TBM), bulan realisasi terakhir (Sep 2026). Bulan berjalan = proyeksi, jangan dipakai.
 SELECT KODE_BA, MATURITY_STATUS, ROUND(SUM(HEKTAR),1) ha FROM PRD_DB_INTEGRATION.INT_PANEN.INT_HEKTAR_BLOK
-WHERE KODE_BA IN ('2121','2123','2124') AND DATE_TRUNC('MONTH',BULAN)='2026-09-01' AND MATURITY_STATUS IN ('TM','TBM 3') GROUP BY ALL ORDER BY 1,2;
+WHERE KODE_BA IN ('2121','2123','2124','2131') AND DATE_TRUNC('MONTH',BULAN)='2026-10-01' AND MATURITY_STATUS IN ('TM','TBM 3') GROUP BY ALL ORDER BY 1,2;
+
+-- 4) NIK aktif per BA bulan laporan (bagian '#nik' di hcns.txt, format 'BA|jumlah')
+SELECT LOCATION||'|'||COUNT(DISTINCT NIK_SAP) l FROM PRD_DB_INTEGRATION.INT_KARYAWAN.INT_MASTER_KARYAWAN_NON_STAFF_BULANAN WHERE BULAN='2026-10-31' AND LOCATION IN ('2121','2123','2124','2131') AND (TANGGAL_RESIGN IS NULL OR TANGGAL_RESIGN > '2026-10-31') GROUP BY LOCATION ORDER BY 1;
+-- Catatan: detail dipakai untuk bulan 09 dan 10 (kolom Periode di halaman). Ha 2131 hanya TM.
