@@ -1157,7 +1157,7 @@ function pemanen(){
   tr(["Selisih vs budget",...M.map(m=>kgd(m.kg,m.kgb)),kgd(Y.kg,Y.kgb)],"tot")+tr(["% tidak dapat basis",...M.map(m=>rd(m.tb)),rd(Y.tb)],"tot")+tr(["% pemanen kelas C",...M.map(m=>rd(m.c)),rd(Y.c)],"tot")+"</tbody>"}
 const seg=el("smSc");SC.forEach(([k,l])=>{const b=document.createElement("button");b.textContent=l;b.setAttribute("aria-pressed",k===sc);b.onclick=()=>{sc=k;seg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));window.SMSC=sc;monthly();hbars();costBars();stacked();pupuk();corr();window.rankRedraw&&window.rankRedraw()};seg.appendChild(b)});
 // ---- correlation chart Rp/Kg vs Yield ----
-const CO=__CORR__,YCAP=3500;let cp=Math.min(n,CO.anc?CO.anc.months:n);
+const CO=__CORR__,YCAP=3500;let cp=n;
 function corrPts(m){const out={af:[],es:[],ex:[]};
  for(const b of bas){const g=CO.bas[b]||{};let tmE=0;
   for(const a in g){const x=g[a],c=sum(x.c5.slice(0,m)),tn=sum(x.ton.slice(0,m)),tt=sum(x.tm.slice(0,m)),h=sum(x.ha.slice(0,m))/m;tmE+=tt;
