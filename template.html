@@ -214,9 +214,11 @@ tr.sub td:first-child{padding-left:20px}
 <div class="tw"><table id="coT"></table></div></section>
 
 <section><h2>Peringkat afdeling (rank-sum)</h2>
+<p class="note" style="margin:2px 0 8px"><b>Periode : YTD {{YTD}} {{YEAR}}</b></p>
 <p class="note">Tiap afdeling diurutkan pada empat indikator (pencapaian produksi vs budget, yield, output ton/HK, dan EC* = EC Rp/Kg tanpa pupuk, infra, penyusutan), lalu peringkatnya dijumlahkan; makin kecil makin baik. Hanya afdeling dengan luas ≥ 100 ha dan produksi &gt; 0. Selalu YTD dan seluruh Region (tidak mengikuti tombol cakupan). Warna baris: <span class="sw" style="background:color-mix(in srgb,var(--good) 30%,var(--surf))"></span>peringkat 1–2, <span class="sw" style="background:color-mix(in srgb,var(--warn) 34%,var(--surf))"></span>3–5, <span class="sw" style="background:color-mix(in srgb,var(--bad) 28%,var(--surf))"></span>6 ke bawah.</p>
 <div class="tw"><table id="tRank"></table></div>
 <h3 class="sh" style="margin-top:18px">Peringkat afdeling vs target / budget</h3>
+<p class="note" style="margin:2px 0 8px"><b>Periode : YTD {{YTD}} {{YEAR}}</b></p>
 <p class="note">Sama dengan tabel di atas, tetapi tiap indikator dinyatakan sebagai <b>achievement terhadap budget</b> sehingga afdeling dibandingkan dengan targetnya sendiri, bukan dengan afdeling lain secara absolut: <b>Ach. produksi</b> = ton ÷ budget ton; <b>Ach. yield</b> = (ton ÷ Ha TM) ÷ (budget ton ÷ Ha budget); <b>Ach. output</b> = (ton ÷ HK) ÷ (budget ton ÷ HK budget); <b>Ach. EC*</b> = EC* Rp/Kg aktual ÷ EC* budget (EC* = tanpa pupuk, infra, penyusutan; <b>di bawah 100% lebih baik</b>, jadi diurutkan naik). Peringkat 1 = achievement terbaik, lalu dijumlahkan; makin kecil makin baik. <b>Semua afdeling dimasukkan tanpa batas luas.</b> Indikator yang tidak bisa dihitung (mis. Ha = 0 pada SBR-E) ditulis – dan diberi peringkat terakhir. Ha memakai Ha aktual dan Ha budget ESTATE_COST, sehingga afdeling yang banyak panen TBM (SBR-B, C, E) terlihat ber-yield sangat tinggi; afdeling kecil (SEK-F, SEK-G) achievement-nya sangat fluktuatif. Baca peringkat keduanya dengan hati-hati.</p>
 <div class="tw"><table id="tRank2"></table></div></section>
 </div>
